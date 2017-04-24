@@ -18,7 +18,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Clave del Producto (opcional)"
+            android:hint="@string/ID_product_opt"
             android:id="@+id/clave_vehiculo"/>
     </android.support.design.widget.TextInputLayout>
 
@@ -30,7 +30,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nombre del producto"
+            android:hint="@string/product_name"
             android:id="@+id/nombre_del_vehiculo"/>
     </android.support.design.widget.TextInputLayout>
 
@@ -42,7 +42,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Precio de venta"
+            android:hint="@string/product_price"
             android:id="@+id/precio_del_vehículo"/>
     </android.support.design.widget.TextInputLayout>
 
@@ -54,7 +54,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Imagen"
+            android:hint="@string/image"
             android:id="@+id/url_imagen"/>
     </android.support.design.widget.TextInputLayout>
 
@@ -66,7 +66,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Stock"
+            android:hint="@string/stock"
             android:id="@+id/stock"/>
     </android.support.design.widget.TextInputLayout>
 
@@ -82,14 +82,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Cancelar"
+            android:text="@string/cancel"
             android:id="@+id/boton_cancelar"/>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Guardar"
+            android:text="@string/save"
             android:id="@+id/boton_guardar"/>
     </LinearLayout>
 

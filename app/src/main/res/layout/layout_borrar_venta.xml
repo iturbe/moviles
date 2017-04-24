@@ -14,12 +14,12 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Clave de la Venta"
+        android:hint="@string/ID_sale"
         android:id="@+id/clave_venta"
         />
 
     <Button
-        android:text="Borrar registro"
+        android:text="@string/delete_entry"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/boton_borrar"

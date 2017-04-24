@@ -22,14 +22,14 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:gravity="center"
-                android:text="Clave del automóvil"
+                android:text="@string/ID_car"
                 android:id="@+id/Clave_auto"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="Nombre"
+                android:text="@string/name"
                 android:layout_toRightOf="@id/Clave_auto"
                 android:gravity="left"
                 android:padding="10dp"

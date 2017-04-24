@@ -21,7 +21,7 @@
         android:id="@+id/etCorreo"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:hint="email" />
+        android:hint="@string/email" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -34,10 +34,10 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/etCorreo"
-        android:hint="password" />
+        android:hint="@string/password" />
 
     <Button
-        android:text="Button"
+        android:text="@string/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/bLogin"
@@ -49,7 +49,7 @@
         android:layout_alignParentEnd="true" />
 
     <TextView
-        android:text="Register"
+        android:text="@string/register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tvRegister"

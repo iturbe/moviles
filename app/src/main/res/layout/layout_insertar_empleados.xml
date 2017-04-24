@@ -17,7 +17,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Clave del empleado"
+            android:hint="@string/ID_employee"
             android:id="@+id/clave_empleado"/>
     </android.support.design.widget.TextInputLayout>
 

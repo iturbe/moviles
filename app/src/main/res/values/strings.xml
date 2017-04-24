@@ -1,3 +1,28 @@
 <resources>
-    <string name="app_name">CRUD</string>
+    <string name="app_name" translatable="false">CRUD</string>
+    <string name="employees">Employees</string>
+    <string name="clothes">Clothes</string>
+    <string name="customers">Customers</string>
+    <string name="sales">Sales</string>
+    <string name="see_logs">See logs</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="button">Button</string>
+    <string name="register">Create account</string>
+    <string name="name">Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="ID_customer">Customer ID</string>
+    <string name="delete_entry">Delete entry</string>
+    <string name="ID_product">Product ID</string>
+    <string name="ID_employee">Employee ID</string>
+    <string name="ID_sale">Sale ID</string>
+    <string name="ID_car">Car ID</string>
+    <string name="ID_customer_opt">Customer ID (optional)</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="ID_product_opt">Product ID (optional)</string>
+    <string name="product_name">Product name</string>
+    <string name="product_price">Price</string>
+    <string name="image">Image</string>
+    <string name="stock">Stock</string>
 </resources>

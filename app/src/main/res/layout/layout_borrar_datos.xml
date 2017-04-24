@@ -15,12 +15,12 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Clave del articulo"
+        android:hint="@string/ID_product"
         android:id="@+id/clave_ropa"
         />
 
     <Button
-        android:text="Borrar registro"
+        android:text="@string/delete_entry"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/boton_borrar"
