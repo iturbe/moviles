@@ -61,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
                                 String correo = jsonResponse.getString("correo");
 
 
+                                // TODO: aqui simplificar el mandar al usuario a una ventana u otra o encontrar la manera de nukear todas las ventanas que no sean la principal de cada usuario cuando se pica back
+
                                 Intent intent = new Intent(MainActivity.this, UserAreaActivity.class);
                                 intent.putExtra("e_id",e_id);
                                 intent.putExtra("nombre",nombre);
