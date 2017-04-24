@@ -29,7 +29,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nombre"
+            android:hint="@string/name"
             android:id="@+id/nombre_empleado"/>
     </android.support.design.widget.TextInputLayout>
 
@@ -41,7 +41,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Apellido"
+            android:hint="@string/last_name"
             android:id="@+id/apellido_empleado"/>
     </android.support.design.widget.TextInputLayout>
 
@@ -53,7 +53,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Admin? (0/1)"
+            android:hint="@string/admin_question"
             android:id="@+id/admin"/>
     </android.support.design.widget.TextInputLayout>
 
@@ -65,7 +65,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Correo"
+            android:hint="@string/email"
             android:id="@+id/correo_empleado"/>
     </android.support.design.widget.TextInputLayout>
 
@@ -77,7 +77,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
+            android:hint="@string/password"
             android:id="@+id/password_empleado"/>
     </android.support.design.widget.TextInputLayout>
 
@@ -93,14 +93,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Cancelar"
+            android:text="@string/cancel"
             android:id="@+id/boton_cancelar"/>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Guardar"
+            android:text="@string/save"
             android:id="@+id/boton_guardar"/>
     </LinearLayout>
 

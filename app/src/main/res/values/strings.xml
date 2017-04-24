@@ -25,4 +25,9 @@
     <string name="product_price">Price</string>
     <string name="image">Image</string>
     <string name="stock">Stock</string>
+    <string name="admin_question" translatable="false">Admin? (0/1)</string>
+    <string name="ID_sale_opt">Sale ID (optional)</string>
+    <string name="quantity">Quantity</string>
+    <string name="insert">Insert</string>
+    <string name="delete">Delete</string>
 </resources>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">CRUD</string>
     <string name="button">Botón</string>
     <string name="clothes">Ropa</string>
     <string name="customers">Cliente</string>
@@ -26,4 +25,8 @@
     <string name="product_price">Precio</string>
     <string name="image">Imagen</string>
     <string name="stock">Disponibilidad</string>
+    <string name="ID_sale_opt">Clave de la venta (opcional)</string>
+    <string name="quantity">Cantidad</string>
+    <string name="insert">Insertar</string>
+    <string name="delete">Borrar</string>
 </resources>

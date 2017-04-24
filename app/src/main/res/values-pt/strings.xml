@@ -1,4 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">CRUD</string>
+    <string name="ID_car">ID do carro</string>
+    <string name="ID_customer">Identificação do Cliente</string>
+    <string name="ID_customer_opt">Identificação do Cliente (opcional)</string>
+    <string name="ID_employee">ID do Empregado</string>
+    <string name="ID_product">ID do produto</string>
+    <string name="ID_product_opt">ID do produto (opcional)</string>
+    <string name="ID_sale">ID do produto</string>
+    <string name="ID_sale_opt">ID do produto (opcional)</string>
+    <string name="button">Botão</string>
+    <string name="cancel">Cancelar</string>
+    <string name="clothes">Roupas</string>
+    <string name="customers">Clientes</string>
+    <string name="delete">Excluir</string>
+    <string name="delete_entry">Eliminar entrada</string>
+    <string name="email">O email</string>
+    <string name="employees">Empregados</string>
+    <string name="image">Imagem</string>
+    <string name="insert">Inserir</string>
+    <string name="last_name">Último nome</string>
+    <string name="name">Nome</string>
+    <string name="password">Senha</string>
+    <string name="product_name">Nome do Produto</string>
+    <string name="product_price">Preço</string>
+    <string name="quantity">Quantidade</string>
+    <string name="register">Criar Conta</string>
+    <string name="sales">Vendas</string>
+    <string name="save">Salve</string>
+    <string name="see_logs">Ver logs</string>
+    <string name="stock">Estoque</string>
 </resources>
