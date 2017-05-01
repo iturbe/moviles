@@ -125,7 +125,9 @@ public class InsertarDatos extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        startActivity( new Intent(InsertarDatos.this,Principal.class));
+                        Intent intent = new Intent(InsertarDatos.this, Principal.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP); //clear previous activities
+                        startActivity(intent);
                     }
                 },
                 new Response.ErrorListener() {
@@ -181,7 +183,9 @@ public class InsertarDatos extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
-                        startActivity( new Intent(InsertarDatos.this,Principal.class));
+                        Intent intent = new Intent(InsertarDatos.this, Principal.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP); //clear previous activities
+                        startActivity(intent);
                     }
                 },
                 new Response.ErrorListener() {

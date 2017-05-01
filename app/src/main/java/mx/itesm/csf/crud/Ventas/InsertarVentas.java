@@ -117,7 +117,9 @@ public class InsertarVentas extends AppCompatActivity {
                             e.printStackTrace();
                         }
                         // comentado para que se quede en esta sección de mi app y ver los errores en caso de fallo al insertar
-                        startActivity( new Intent(InsertarVentas.this,PrincipalVentas.class));
+                        Intent intent = new Intent(InsertarVentas.this, PrincipalVentas.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP); //clear previous activities
+                        startActivity(intent);
                     }
                 },
                 new Response.ErrorListener() {
@@ -172,7 +174,9 @@ public class InsertarVentas extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
-                        startActivity( new Intent(InsertarVentas.this,PrincipalVentas.class));
+                        Intent intent = new Intent(InsertarVentas.this, PrincipalVentas.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP); //clear previous activities
+                        startActivity(intent);
                     }
                 },
                 new Response.ErrorListener() {

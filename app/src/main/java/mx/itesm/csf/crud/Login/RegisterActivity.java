@@ -47,6 +47,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                             if (success){
                                 Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); //clear previous activities
                                 RegisterActivity.this.startActivity(intent);
                             }else{
                                 AlertDialog.Builder builder= new AlertDialog.Builder(RegisterActivity.this);

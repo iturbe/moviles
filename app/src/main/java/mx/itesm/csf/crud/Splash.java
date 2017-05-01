@@ -68,6 +68,7 @@ public class Splash extends AppCompatActivity {
             {
                 finish();
                 Intent intent = new Intent().setClass(Splash.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); //clear previous activities
                 startActivity(intent);
             }
         };
