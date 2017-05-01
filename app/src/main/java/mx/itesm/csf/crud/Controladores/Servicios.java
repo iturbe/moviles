@@ -36,4 +36,7 @@ public class Servicios {
     //SERVICIOS DE LOGIN/REGISTER
     public static final String REGISTER_REQUEST_URL_CORRECTED="http://ubiquitous.csf.itesm.mx/~pddm-1021621/content/parcial2/proyectoProtected/servicio.register.php";
     public static final String LOGIN_REQUEST_URL_CORRECTED="http://ubiquitous.csf.itesm.mx/~pddm-1021621/content/parcial2/proyectoProtected/servicio.login2.php";
+
+    //SERVICIOS DE ESTADÍSTICAS
+    public static final String PRODUCTOS_MAS_VENDIDOS="http://ubiquitous.csf.itesm.mx/~pddm-1021621/content/parcial2/proyectoProtected/servicio.masVendidos.php";
 }

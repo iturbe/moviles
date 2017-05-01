@@ -63,8 +63,6 @@ public class MainActivity extends AppCompatActivity {
                                 int admin = jsonResponse.getInt("admin");
                                 String correo = jsonResponse.getString("correo");
 
-                                // TODO: aqui simplificar el mandar al usuario a una ventana u otra o encontrar la manera de nukear todas las ventanas que no sean la principal de cada usuario cuando se pica back
-
                                 if (admin == 1){ // usuario es admin, mandarlo directamente a CRUDmenu
                                     Intent intent = new Intent(MainActivity.this, CRUDmenu.class);
                                     intent.putExtra("e_id",e_id);
