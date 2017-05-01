@@ -32,4 +32,8 @@ public class Servicios {
     public static final String SPLASH2 = "http://ubiquitous.csf.itesm.mx/~pddm-1021621/content/parcial2/splashResources/sp2.jpg";
     public static final String SPLASH3 = "http://ubiquitous.csf.itesm.mx/~pddm-1021621/content/parcial2/splashResources/sp3.jpg";
     public static final String BLACK = "http://ubiquitous.csf.itesm.mx/~pddm-1021621/content/parcial2/splashResources/black.png";
+
+    //SERVICIOS DE LOGIN/REGISTER
+    public static final String REGISTER_REQUEST_URL_CORRECTED="http://ubiquitous.csf.itesm.mx/~pddm-1021621/content/parcial2/proyectoProtected/servicio.register.php";
+    public static final String LOGIN_REQUEST_URL_CORRECTED="http://ubiquitous.csf.itesm.mx/~pddm-1021621/content/parcial2/proyectoProtected/servicio.login2.php";
 }
