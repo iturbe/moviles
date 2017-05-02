@@ -40,7 +40,6 @@ public class PrincipalVentas extends AppCompatActivity {
     RecyclerView miRecyclerview;
     RecyclerView.Adapter miAdaptador;
     RecyclerView.LayoutManager miAdministrador;
-    //List<DataModel> misElementos;
     List<ModeloVentas> misElementos;
     Button botonInsertar, botonBorrar;
     ProgressDialog barra_de_progreso;
@@ -118,10 +117,10 @@ public class PrincipalVentas extends AppCompatActivity {
                                 } else {
                                     JSONObject data = response.getJSONObject(i);
                                     ModeloVentas ventas = new ModeloVentas();
-                                    ventas.setV_id(data.getString("v_id"));
-                                    ventas.setP_id(data.getString("p_id"));
-                                    ventas.setC_id(data.getString("c_id"));
-                                    ventas.setCantidad(data.getString("cantidad"));
+                                    ventas.setV_id(data.getInt("v_id"));
+                                    ventas.setP_id(data.getInt("p_id"));
+                                    ventas.setC_id(data.getInt("c_id"));
+                                    ventas.setCantidad(data.getInt("cantidad"));
                                     misElementos.add(ventas);
                                 }
 

@@ -21,7 +21,6 @@ import mx.itesm.csf.crud.R;
 
 public class AdaptadorEmpleados extends RecyclerView.Adapter<AdaptadorEmpleados.ContenedorDeDatos> {
     // definimos una lista en donde vamos a incorporar todos los autos de nuestro JSON
-    //private List<DataModel> misElementos ;
     private List<ModeloEmpleados> misElementos ;
 
     // Context representa el estado actual de la aplicación y permite obtener información acerca de su entorno de ejecución
@@ -49,7 +48,7 @@ public class AdaptadorEmpleados extends RecyclerView.Adapter<AdaptadorEmpleados.
     public void onBindViewHolder(AdaptadorEmpleados.ContenedorDeDatos titulo, int position) {
         ModeloEmpleados datamodel  = misElementos.get(position);
         titulo.Nombre.setText(datamodel.getNombre());
-        titulo.Clave_auto.setText(datamodel.getE_id());
+        titulo.Clave_auto.setText(datamodel.getE_id() + " ");
 
         titulo.datamodel = datamodel;
     }
@@ -68,7 +67,6 @@ public class AdaptadorEmpleados extends RecyclerView.Adapter<AdaptadorEmpleados.
     class ContenedorDeDatos extends RecyclerView.ViewHolder
     {
         TextView Nombre,Clave_auto;
-        //DataModel datamodel;
         ModeloEmpleados datamodel;
 
         // definimos nuestra vista

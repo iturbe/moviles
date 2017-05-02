@@ -7,11 +7,12 @@ package mx.itesm.csf.crud.Modelos;
 public class ModeloRopa {
 
     // definimos los componentes de cada objeto de ropa
-    private String p_id, nombre, imagen, stock, precio;
+    private String nombre, imagen, stock, precio;
+    private  int p_id;
 
     public ModeloRopa(){}
 
-    public ModeloRopa(String p_id, String nombre, String imagen, String stock, String precio) {
+    public ModeloRopa(int p_id, String nombre, String imagen, String stock, String precio) {
         this.p_id = p_id;
         this.nombre = nombre;
         this.imagen = imagen;
@@ -19,13 +20,11 @@ public class ModeloRopa {
         this.precio = precio;
     }
 
-    public String getP_id() {
+    public int getP_id() {
         return p_id;
     }
 
-    public void setP_id(String p_id) {
-        this.p_id = p_id;
-    }
+    public void setP_id(int p_id) { this.p_id = p_id; }
 
     public String getNombre() {
         return nombre;

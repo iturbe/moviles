@@ -23,6 +23,8 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import mx.itesm.csf.crud.Clientes.InsertarClientes;
+import mx.itesm.csf.crud.Clientes.PrincipalClientes;
 import mx.itesm.csf.crud.Controladores.Controlador;
 import mx.itesm.csf.crud.R;
 
@@ -121,7 +123,9 @@ public class InsertarEmpleados extends AppCompatActivity {
                             e.printStackTrace();
                         }
                         // comentado para que se quede en esta sección de mi app y ver los errores en caso de fallo al insertar
-                        startActivity( new Intent(InsertarEmpleados.this,PrincipalEmpleados.class));
+                        Intent intent = new Intent(InsertarEmpleados.this, PrincipalEmpleados.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP); //clear previous activities
+                        startActivity(intent);
                     }
                 },
                 new Response.ErrorListener() {
@@ -178,7 +182,9 @@ public class InsertarEmpleados extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
-                        startActivity( new Intent(InsertarEmpleados.this,PrincipalEmpleados.class));
+                        Intent intent = new Intent(InsertarEmpleados.this, PrincipalEmpleados.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP); //clear previous activities
+                        startActivity(intent);
                     }
                 },
                 new Response.ErrorListener() {

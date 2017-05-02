@@ -8,7 +8,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import mx.itesm.csf.crud.CRUDmenu;
 import mx.itesm.csf.crud.R;
+import mx.itesm.csf.crud.Vendedor.ElegirCliente;
+import mx.itesm.csf.crud.Ventas.PrincipalVentas;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -60,15 +64,24 @@ public class MainActivity extends AppCompatActivity {
                                 int admin = jsonResponse.getInt("admin");
                                 String correo = jsonResponse.getString("correo");
 
+                                if (admin == 1){ // usuario es admin, mandarlo directamente a CRUDmenu
+                                    Intent intent = new Intent(MainActivity.this, CRUDmenu.class);
+                                    intent.putExtra("e_id",e_id);
+                                    intent.putExtra("nombre",nombre);
+                                    intent.putExtra("apellido",apellido);
+                                    intent.putExtra("admin",admin);
+                                    intent.putExtra("correo",correo);
+                                    MainActivity.this.startActivity(intent);
 
-                                Intent intent = new Intent(MainActivity.this, UserAreaActivity.class);
-                                intent.putExtra("e_id",e_id);
-                                intent.putExtra("nombre",nombre);
-                                intent.putExtra("apellido",apellido);
-                                intent.putExtra("admin",admin);
-                                intent.putExtra("correo",correo);
-
-                                MainActivity.this.startActivity(intent);
+                                } else { // no es admin, mandarlo a principalVentas
+                                    Intent intent = new Intent(MainActivity.this, ElegirCliente.class);
+                                    intent.putExtra("e_id",e_id);
+                                    intent.putExtra("nombre",nombre);
+                                    intent.putExtra("apellido",apellido);
+                                    intent.putExtra("admin",admin);
+                                    intent.putExtra("correo",correo);
+                                    MainActivity.this.startActivity(intent);
+                                }
 
                             } else {
                                 AlertDialog.Builder builder= new AlertDialog.Builder(MainActivity.this);

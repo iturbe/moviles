@@ -77,7 +77,9 @@ public class BorrarClientes extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
-                        startActivity(new Intent(BorrarClientes.this,PrincipalClientes.class));
+                        Intent intent = new Intent(BorrarClientes.this,PrincipalClientes.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP); //clear previous activities
+                        startActivity(intent);
                     }
                 },
                 new Response.ErrorListener() {

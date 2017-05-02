@@ -6,12 +6,13 @@ package mx.itesm.csf.crud.Modelos;
 
 public class ModeloEmpleados {
 
-    private String e_id, nombre, apellido, admin, correo, password;
+    private String nombre, apellido, admin, correo, password;
+    private int e_id;
 
     public ModeloEmpleados() {
     }
 
-    public ModeloEmpleados(String e_id, String nombre, String apellido, String admin, String correo,String password) {
+    public ModeloEmpleados(int e_id, String nombre, String apellido, String admin, String correo,String password) {
         this.e_id = e_id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -20,11 +21,11 @@ public class ModeloEmpleados {
         this.password = password;
     }
 
-    public String getE_id() {
+    public int getE_id() {
         return e_id;
     }
 
-    public void setE_id(String e_id) {
+    public void setE_id(int e_id) {
         this.e_id = e_id;
     }
 

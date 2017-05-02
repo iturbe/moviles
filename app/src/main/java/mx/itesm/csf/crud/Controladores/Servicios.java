@@ -26,4 +26,17 @@ public class Servicios {
     public static final String VENTAS_CREATE = "http://ubiquitous.csf.itesm.mx/~pddm-1021621/content/parcial2/proyectoProtected/servicio.c.ventas.php";
     public static final String VENTAS_DELETE = "http://ubiquitous.csf.itesm.mx/~pddm-1021621/content/parcial2/proyectoProtected/servicio.d.ventas.php";
     public static final String VENTAS_UPDATE = "http://ubiquitous.csf.itesm.mx/~pddm-1021621/content/parcial2/proyectoProtected/servicio.u.ventas.php";
+
+    //SERVICIOS DE SPLASH
+    public static final String SPLASH1 = "http://ubiquitous.csf.itesm.mx/~pddm-1021621/content/parcial2/splashResources/sp1.jpg";
+    public static final String SPLASH2 = "http://ubiquitous.csf.itesm.mx/~pddm-1021621/content/parcial2/splashResources/sp2.jpg";
+    public static final String SPLASH3 = "http://ubiquitous.csf.itesm.mx/~pddm-1021621/content/parcial2/splashResources/sp3.jpg";
+    public static final String BLACK = "http://ubiquitous.csf.itesm.mx/~pddm-1021621/content/parcial2/splashResources/black.png";
+
+    //SERVICIOS DE LOGIN/REGISTER
+    public static final String REGISTER_REQUEST_URL_CORRECTED="http://ubiquitous.csf.itesm.mx/~pddm-1021621/content/parcial2/proyectoProtected/servicio.register.php";
+    public static final String LOGIN_REQUEST_URL_CORRECTED="http://ubiquitous.csf.itesm.mx/~pddm-1021621/content/parcial2/proyectoProtected/servicio.login2.php";
+
+    //SERVICIOS DE ESTADÍSTICAS
+    public static final String PRODUCTOS_MAS_VENDIDOS="http://ubiquitous.csf.itesm.mx/~pddm-1021621/content/parcial2/proyectoProtected/servicio.masVendidos.php";
 }

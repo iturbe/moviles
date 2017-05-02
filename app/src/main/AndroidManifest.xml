@@ -24,16 +24,31 @@
         <activity android:name=".Ventas.PrincipalVentas" />
         <activity android:name=".Ventas.BorrarVentas" />
         <activity android:name=".Ventas.InsertarVentas" />
-        <activity android:name=".CRUDmenu"/>
-        <activity android:name=".Login.RegisterActivity" />
-        <activity android:name=".Login.UserAreaActivity"></activity>
-        <activity android:name=".Login.MainActivity">
+        <activity android:name=".CRUDmenu" />
+        <activity
+            android:name=".Login.RegisterActivity"
+            android:label="Register" />
+        <activity
+            android:name=".Login.UserAreaActivity"
+            android:label="Login" />
+        <activity
+            android:name=".Splash"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Login.MainActivity"
+            android:label="Login" />
+        <activity
+            android:name=".Grafica.ProductosMasVendidos"
+            android:label="Productos más vendidos" />
+        <activity android:name=".Vendedor.ElegirCliente" />
+        <activity android:name=".Vendedor.Carrito"
+            android:label="Carrito"/>
     </application>
 
 </manifest>

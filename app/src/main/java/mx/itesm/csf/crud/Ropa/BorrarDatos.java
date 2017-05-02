@@ -78,7 +78,9 @@ public class BorrarDatos extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
-                        startActivity(new Intent(BorrarDatos.this,Principal.class));
+                        Intent intent = new Intent(BorrarDatos.this, Principal.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP); //clear previous activities
+                        startActivity(intent);
                     }
                 },
                 new Response.ErrorListener() {

@@ -11,6 +11,8 @@ import mx.itesm.csf.crud.Clientes.PrincipalClientes;
 import mx.itesm.csf.crud.R;
 import mx.itesm.csf.crud.Ventas.PrincipalVentas;
 
+// IMPORTANTE: ESTA ACTIVIDAD SE ENCUENTRA DEPRECADA, NOS LA SALTAMOS POR COMPLETO Y SIMPLEMENTE MANDAMOS AL USUARIO A LA ACTIVIDAD CORRESPONDIENTE (CRUDMENU O PRINCIPALVENTAS)
+
 public class UserAreaActivity extends AppCompatActivity {
 
     @Override
@@ -33,12 +35,15 @@ public class UserAreaActivity extends AppCompatActivity {
 
         if (admin == 1) {
             Intent otherIntent = new Intent(UserAreaActivity.this,CRUDmenu.class);
+            otherIntent.putExtra("nombre", nombre);
+            otherIntent.putExtra("apellido", apellido);
             startActivity(otherIntent);
         } else {
             String message = nombre + " " + apellido + " bienvenido a tu cuenta, tu email es " + correo + ", tu id es: " + e_id + "" + " y tu num de admin es: " + admin + "";
             welcomeMessage.setText(message);
             //etMail.setText(email);
             Intent otherIntent = new Intent(UserAreaActivity.this,PrincipalVentas.class);
+            otherIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); //clear previous activities
             startActivity(otherIntent);
         }
     }
