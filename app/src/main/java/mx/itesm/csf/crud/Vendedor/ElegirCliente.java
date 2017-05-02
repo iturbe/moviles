@@ -1,15 +1,23 @@
-package mx.itesm.csf.crud.Clientes;
+package mx.itesm.csf.crud.Vendedor;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
+import android.util.Log;
+import android.widget.Adapter;
+import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -27,69 +35,89 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import mx.itesm.csf.crud.Adaptadores.AdaptadorClientes;
+import mx.itesm.csf.crud.Clientes.InsertarClientes;
+import mx.itesm.csf.crud.Clientes.PrincipalClientes;
 import mx.itesm.csf.crud.Controladores.Controlador;
 import mx.itesm.csf.crud.Controladores.Servicios;
 import mx.itesm.csf.crud.Modelos.ModeloClientes;
 import mx.itesm.csf.crud.R;
 
-public class PrincipalClientes extends AppCompatActivity {
+public class ElegirCliente extends Activity implements OnItemSelectedListener {
 
-
-    RecyclerView miRecyclerview;
-    RecyclerView.Adapter miAdaptador;
-    RecyclerView.LayoutManager miAdministrador;
-    //List<DataModel> misElementos;
-    List<ModeloClientes> misElementos;
-    Button botonInsertar, botonBorrar;
+    List <ModeloClientes> listaClientes = new ArrayList<>();
+    ArrayList <String> nombresClientes = new ArrayList<>();
+    Button botonContinuar;
+    Spinner clientes;
     ProgressDialog barra_de_progreso;
+    TextView welcomeMessage;
+    ArrayAdapter<String> myAdapter;
+    Context myContext;
+    Intent next;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_principal_clientes);
+        setContentView(R.layout.activity_elegir_cliente);
 
-        // Mapeamos los elementos de nuestra vista y la del CardView
-        miRecyclerview = (RecyclerView) findViewById(R.id.reciclador);
-        botonInsertar = (Button) findViewById(R.id.botonInsertar);
-        botonBorrar = (Button) findViewById(R.id.botonBorrar);
-        barra_de_progreso = new ProgressDialog(PrincipalClientes.this);
-        misElementos = new ArrayList<>();
+        // Mapeamos los elementos de nuestra vista
+        botonContinuar = (Button) findViewById(R.id.button);
+        barra_de_progreso = new ProgressDialog(ElegirCliente.this);
+        welcomeMessage = (TextView) findViewById(R.id.welcome);
+        clientes = (Spinner)findViewById(R.id.spinner);
+        next = new Intent(ElegirCliente.this, Carrito.class);
 
-        // Vamos a llamar la funcion cargarJSON con Volley para procesar los datos
+        // para movernos a la próxima ventana
+        botonContinuar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(next);
+            }
+        });
+
+        //obtener los extras (nombre del empleado)
+        Intent intent = getIntent();
+        String nombre = intent.getStringExtra("nombre");
+        String apellido = intent.getStringExtra("apellido");
+        int employeeNumber = intent.getIntExtra("e_id", -1);
+
+        //crear mensaje de bienvenida
+        String message = welcomeMessage.getText() + ", " + nombre + " " + apellido + " (# " + employeeNumber + ")";
+        welcomeMessage.setText(message);
+
+        //obtenemos el prompt desde strings.xml
+        myContext = getApplicationContext();
+
+        // llamar la funcion cargarJSON con Volley para obtener los datos
         cargarJSON();
 
-        // utilizamos los componentes de CardView
-        miAdministrador = new LinearLayoutManager(PrincipalClientes.this,LinearLayoutManager.VERTICAL,false);
-        miRecyclerview.setLayoutManager(miAdministrador);
-        miAdaptador = new AdaptadorClientes(PrincipalClientes.this,misElementos);
-        miRecyclerview.setAdapter(miAdaptador);
+        // setup del spinner
+        myAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, nombresClientes);
+        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        clientes.setPrompt(myContext.getString(R.string.choose));
+        clientes.setAdapter(myAdapter);
+        clientes.setOnItemSelectedListener(this);
+        Log.d("prompt", clientes.getPrompt().toString());
 
+    }
 
-        // LayoutManager  se encarga del layout de todas las vistas dentro del RecyclerView, concretando con el LinearLayoutManager,
-        // permite entre otros acceder a elementos mostrados en la pantalla.
-        // https://developer.android.com/reference/android/support/v7/widget/LinearLayoutManager.html
-        miAdministrador = new LinearLayoutManager(PrincipalClientes.this,LinearLayoutManager.VERTICAL,false);
-        miRecyclerview.setLayoutManager(miAdministrador);
-        miAdaptador = new AdaptadorClientes(PrincipalClientes.this,misElementos);
-        miRecyclerview.setAdapter(miAdaptador);
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        botonContinuar.setText("Atender a " + nombresClientes.get(position));
 
-        // definimos los listeners para cada boton de nuestra interfaz
-        botonInsertar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(PrincipalClientes.this,InsertarClientes.class);
-                startActivity(intent);
-            }
-        });
+        //limpiar
+        next.removeExtra("c_id");
+        next.removeExtra("nombre");
+        next.removeExtra("apellido");
 
-        botonBorrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent hapus = new Intent(PrincipalClientes.this,BorrarClientes.class);
-                startActivity(hapus);
-            }
-        });
+        //poner los buenos
+        next.putExtra("c_id", listaClientes.get(position).getC_id());
+        Log.d("c_id", " " + listaClientes.get(position).getC_id());
+        next.putExtra("nombre", listaClientes.get(position).getNombre());
+        next.putExtra("apellido", listaClientes.get(position).getApellido());
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent){
     }
 
     // creamos nuestro método cargarJSON() con la librería Volley
@@ -116,19 +144,20 @@ public class PrincipalClientes extends AppCompatActivity {
 
                                 } else {
                                     JSONObject data = response.getJSONObject(i);
-                                    //DataModel datamodel = new DataModel();
                                     ModeloClientes cliente = new ModeloClientes();
                                     cliente.setC_id(data.getInt("c_id"));
                                     cliente.setNombre(data.getString("nombre"));
                                     cliente.setApellido(data.getString("apellido"));
-                                    misElementos.add(cliente);
+                                    listaClientes.add(cliente);
+                                    nombresClientes.add(data.getString("nombre") + " " + data.getString("apellido"));
                                 }
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
                         }
-                        miAdaptador.notifyDataSetChanged();
+                        myAdapter.notifyDataSetChanged();
+                        clientes.setPrompt(myContext.getString(R.string.choose));
                     }
                 },
                 new Response.ErrorListener() {
@@ -140,7 +169,7 @@ public class PrincipalClientes extends AppCompatActivity {
                 }){
             @Override
             public Map< String, String > getHeaders() throws AuthFailureError {
-                HashMap< String, String > headers = new HashMap < String, String > ();
+                HashMap< String, String > headers = new HashMap <> ();
                 String encodedCredentials = Base64.encodeToString("admin@tiendita.com:root".getBytes(), Base64.NO_WRAP);
                 headers.put("Authorization", "Basic " + encodedCredentials);
                 return headers;
@@ -149,5 +178,4 @@ public class PrincipalClientes extends AppCompatActivity {
 
         Controlador.getInstance().agregaAlRequestQueue(reqData);
     }
-
 }

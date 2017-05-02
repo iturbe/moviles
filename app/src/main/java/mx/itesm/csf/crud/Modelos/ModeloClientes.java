@@ -5,22 +5,22 @@ package mx.itesm.csf.crud.Modelos;
  */
 
 public class ModeloClientes {
-    private String c_id, nombre, apellido;
-
+    private String nombre, apellido;
+    private int c_id;
 
     public ModeloClientes() {}
 
-    public ModeloClientes(String c_id, String nombre, String apellido) {
+    public ModeloClientes(int c_id, String nombre, String apellido) {
         this.c_id = c_id;
         this.nombre = nombre;
         this.apellido = apellido;
     }
 
-    public String getC_id() {
+    public int getC_id() {
         return c_id;
     }
 
-    public void setC_id(String c_id) {
+    public void setC_id(int c_id) {
         this.c_id = c_id;
     }
 

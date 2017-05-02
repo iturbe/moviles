@@ -42,10 +42,13 @@
         </activity>
         <activity
             android:name=".Login.MainActivity"
-            android:label="Login"></activity>
+            android:label="Login" />
         <activity
             android:name=".Grafica.ProductosMasVendidos"
-            android:label="Productos más vendidos"/>
+            android:label="Productos más vendidos" />
+        <activity android:name=".Vendedor.ElegirCliente" />
+        <activity android:name=".Vendedor.Carrito"
+            android:label="Carrito"/>
     </application>
 
 </manifest>

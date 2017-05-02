@@ -22,7 +22,7 @@ import static android.net.Uri.parse;
 
 public class Splash extends AppCompatActivity {
 
-    private long wait = 5000;
+    private long wait = 2500;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {

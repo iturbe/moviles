@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import mx.itesm.csf.crud.CRUDmenu;
 import mx.itesm.csf.crud.R;
+import mx.itesm.csf.crud.Vendedor.ElegirCliente;
 import mx.itesm.csf.crud.Ventas.PrincipalVentas;
 
 import com.android.volley.RequestQueue;
@@ -73,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                                     MainActivity.this.startActivity(intent);
 
                                 } else { // no es admin, mandarlo a principalVentas
-                                    Intent intent = new Intent(MainActivity.this, PrincipalVentas.class);
+                                    Intent intent = new Intent(MainActivity.this, ElegirCliente.class);
                                     intent.putExtra("e_id",e_id);
                                     intent.putExtra("nombre",nombre);
                                     intent.putExtra("apellido",apellido);

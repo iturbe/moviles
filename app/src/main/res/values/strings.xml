@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">CRUD</string>
+    <string name="instructions">Elige el cliente para atender.</string>
+    <string name="continue_button">Continuar</string>
+    <string name="welcome">Bienvenido</string>
+    <string name="choose">Elije un cliente</string>
+    <string name="cart">Carrito de</string>
 </resources>
