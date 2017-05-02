@@ -116,7 +116,7 @@ public class PrincipalEmpleados extends AppCompatActivity {
                                 } else {
                                     JSONObject data = response.getJSONObject(i);
                                     ModeloEmpleados empleado = new ModeloEmpleados();
-                                    empleado.setE_id(data.getString("e_id"));
+                                    empleado.setE_id(data.getInt("e_id"));
                                     empleado.setNombre(data.getString("nombre"));
                                     empleado.setApellido(data.getString("apellido"));
                                     empleado.setAdmin(data.getString("admin"));

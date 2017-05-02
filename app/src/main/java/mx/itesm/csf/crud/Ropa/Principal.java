@@ -40,7 +40,6 @@ public class Principal extends AppCompatActivity {
     RecyclerView miRecyclerview;
     RecyclerView.Adapter miAdaptador;
     RecyclerView.LayoutManager miAdministrador;
-    //List<DataModel> misElementos;
     List<ModeloRopa> misElementos;
     Button botonInsertar, botonBorrar;
     ProgressDialog barra_de_progreso;
@@ -117,9 +116,8 @@ public class Principal extends AppCompatActivity {
 
                                 } else {
                                     JSONObject data = response.getJSONObject(i);
-                                    //DataModel datamodel = new DataModel();
                                     ModeloRopa ropa = new ModeloRopa();
-                                    ropa.setP_id(data.getString("p_id"));
+                                    ropa.setP_id(data.getInt("p_id"));
                                     ropa.setNombre(data.getString("nombre"));
                                     ropa.setImagen(data.getString("imagen"));
                                     ropa.setStock(data.getString("stock"));

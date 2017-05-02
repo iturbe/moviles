@@ -39,7 +39,6 @@ public class PrincipalClientes extends AppCompatActivity {
     RecyclerView miRecyclerview;
     RecyclerView.Adapter miAdaptador;
     RecyclerView.LayoutManager miAdministrador;
-    //List<DataModel> misElementos;
     List<ModeloClientes> misElementos;
     Button botonInsertar, botonBorrar;
     ProgressDialog barra_de_progreso;
@@ -116,7 +115,6 @@ public class PrincipalClientes extends AppCompatActivity {
 
                                 } else {
                                     JSONObject data = response.getJSONObject(i);
-                                    //DataModel datamodel = new DataModel();
                                     ModeloClientes cliente = new ModeloClientes();
                                     cliente.setC_id(data.getInt("c_id"));
                                     cliente.setNombre(data.getString("nombre"));

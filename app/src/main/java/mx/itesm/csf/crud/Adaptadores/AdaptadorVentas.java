@@ -21,7 +21,6 @@ import mx.itesm.csf.crud.Ventas.InsertarVentas;
 
 public class AdaptadorVentas extends RecyclerView.Adapter<AdaptadorVentas.ContenedorDeDatos> {
     // definimos una lista en donde vamos a incorporar todos los autos de nuestro JSON
-    //private List<DataModel> misElementos ;
     private List<ModeloVentas> misElementos ;
 
     // Context representa el estado actual de la aplicación y permite obtener información acerca de su entorno de ejecución
