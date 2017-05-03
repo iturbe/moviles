@@ -7,13 +7,17 @@ package mx.itesm.csf.crud.Modelos;
 public class ProductoEnCarrito {
 
     private String nombre;
-    private int precio, cantidad, subtotal;
+    private int precio;
+    private int cantidad;
+    private int subtotal;
+    private int p_id;
 
-    public ProductoEnCarrito(String nombre, int precio, int cantidad, int subtotal) {
+    public ProductoEnCarrito(int p_id, String nombre, int precio, int cantidad) {
+        this.p_id = p_id;
         this.nombre = nombre;
         this.precio = precio;
         this.cantidad = cantidad;
-        this.subtotal = subtotal;
+        this.subtotal = precio*cantidad;
     }
 
     public void update(){
@@ -48,5 +52,13 @@ public class ProductoEnCarrito {
 
     public int getSubtotal() {
         return subtotal;
+    }
+
+    public int getP_id() {
+        return p_id;
+    }
+
+    public void setP_id(int p_id) {
+        this.p_id = p_id;
     }
 }

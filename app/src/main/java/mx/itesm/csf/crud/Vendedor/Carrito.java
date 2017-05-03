@@ -41,12 +41,15 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import static mx.itesm.csf.crud.Controladores.Servicios.VENTAS_CREATE;
 
 public class Carrito extends AppCompatActivity {
 
@@ -60,7 +63,7 @@ public class Carrito extends AppCompatActivity {
     RecyclerView miRecyclerview;
     RecyclerView.Adapter miAdaptador;
     RecyclerView.LayoutManager miAdministrador;
-    Button botonLista, botonEscaneado, botonBorrar;
+    Button botonCheckout, botonEscaneado, botonBorrar;
 
     int productID;
     int desiredQuantity;
@@ -81,18 +84,14 @@ public class Carrito extends AppCompatActivity {
         clientName.setText("Carrito de " + nombreCliente + " " + apellidoCliente + " (" + idCliente + ")");
         barra_de_progreso = new ProgressDialog(Carrito.this);
 
-        //BORRAR ARTÍCULOS DUMMY
         carrito = new ArrayList<>();
-        carrito.add(new ProductoEnCarrito("iPhone", 12000, 1, 12000));
-        carrito.add(new ProductoEnCarrito("audifonos", 400, 2, 800));
 
         map = new HashMap<>();
 
         miRecyclerview = (RecyclerView) findViewById(R.id.reciclador);
-        botonLista = (Button) findViewById(R.id.agregarPorLista);
+        botonCheckout = (Button) findViewById(R.id.checkout);
         botonEscaneado = (Button) findViewById(R.id.agregarPorEscaneado);
         botonBorrar = (Button) findViewById(R.id.borrar);
-        //barra_de_progreso = new ProgressDialog(Carrito.this);
 
         // utilizamos los componentes de CardView
         miAdministrador = new LinearLayoutManager(Carrito.this, LinearLayoutManager.VERTICAL,false);
@@ -112,6 +111,17 @@ public class Carrito extends AppCompatActivity {
 
     }
 
+    // función que efectúa el proceso de checkout del carrito
+    public void checkout(View view){
+        if (carrito.isEmpty()){
+            Toast.makeText(Carrito.this, "No hay nada en el carrito!", Toast.LENGTH_SHORT).show();
+        } else {
+            for (int a = 0; a < carrito.size(); a++){
+                vender(carrito.get(a).getP_id(), idCliente, a, carrito.get(a).getCantidad());
+            }
+        }
+    }
+
     // funcion para el escaneado de un código QR
     public void leer(View view){
         IntentIntegrator integrator = new IntentIntegrator(this);
@@ -122,6 +132,7 @@ public class Carrito extends AppCompatActivity {
         integrator.initiateScan();
     }
 
+    // cuadro de diálogo para el QR result
     public void showDialog(final String result){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.dialog_title);
@@ -142,6 +153,7 @@ public class Carrito extends AppCompatActivity {
         builder.show();
     }
 
+    // para el lector QR
     public void onActivityResult(int requestCode, int resultCode, Intent intent){
         IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
         if (scanResult.getContents() != null){
@@ -154,8 +166,7 @@ public class Carrito extends AppCompatActivity {
     }
 
     // creamos nuestro método cargarJSON() con la librería Volley
-    private void cargarJSON()
-    {
+    private void cargarJSON(){
         barra_de_progreso.setMessage("Cargando datos...");
         barra_de_progreso.setCancelable(false);
         barra_de_progreso.show();
@@ -172,14 +183,16 @@ public class Carrito extends AppCompatActivity {
 
                         try {
                             if (response.getInt("success") == 1){
-                                Toast.makeText(Carrito.this, "Si se puede agregar al carrito", Toast.LENGTH_SHORT).show();
+                                carrito.add(new ProductoEnCarrito(productID, response.getString("nombre"), response.getInt("precio"), desiredQuantity));
+                                Toast.makeText(Carrito.this, "Agregado al carrito: " + response.getString("nombre") + " (x" + desiredQuantity + ")", Toast.LENGTH_SHORT).show();
+                                Log.d("why not", "a ver");
                             } else {
-                                Toast.makeText(Carrito.this, "No se puede agregar al carrito", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Carrito.this, "No se pudo agregar al carrito. No existe un producto con ese ID o no hay suficiente stock.", Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        //notifydatasetchanged
+                        miAdaptador.notifyDataSetChanged();
                     }
                 },
                 new Response.ErrorListener() {
@@ -201,6 +214,7 @@ public class Carrito extends AppCompatActivity {
         Controlador.getInstance().agregaAlRequestQueue(reqData);
     }
 
+    //llama un numberPicker y guarda el resultado en desiredQuantity
     private void callNumberPicker(){
 
         Context thisContext = Carrito.this;
@@ -221,12 +235,67 @@ public class Carrito extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         desiredQuantity = picker.getValue();
-                        Toast.makeText(Carrito.this, "El usuario quiere " + desiredQuantity + " productos", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(Carrito.this, "El usuario quiere " + desiredQuantity + " productos", Toast.LENGTH_SHORT).show();
                         cargarJSON();
                     }
                 })
                 .setNegativeButton(android.R.string.cancel, null)
                 .show();
 
+    }
+
+    //insertar venta
+    private void vender(final int productID, final int customerID, final int cartItemNumber, final int quantity)
+    {
+        barra_de_progreso.setMessage("Insertar datos");
+        barra_de_progreso.setCancelable(false);
+        barra_de_progreso.show();
+
+        StringRequest enviaDatos = new StringRequest(Request.Method.POST, VENTAS_CREATE,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        barra_de_progreso.cancel();
+                        try {
+                            JSONObject res = new JSONObject(response);
+                            Toast.makeText(Carrito.this, "Respuesta : "+   res.getString("mensaje") , Toast.LENGTH_SHORT).show();
+                            Log.d("Parámetros: ", response.toString());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        // notificar de una venta exitosa
+                        Toast.makeText(Carrito.this, "Venta del cartItem #" + cartItemNumber + " exitosa!" , Toast.LENGTH_SHORT).show();
+                        Log.d("vendido", quantity + " " + productID + " (p_id)");
+                        //Intent intent = new Intent(InsertarVentas.this, PrincipalVentas.class);
+                        //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP); //clear previous activities
+                        //startActivity(intent);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        barra_de_progreso.cancel();
+                        Toast.makeText(Carrito.this, "Respuesta: Error al insertar datos", Toast.LENGTH_SHORT).show();
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                map.clear();
+                map.put("p_id", Integer.toString(productID));
+                map.put("c_id", Integer.toString(customerID));
+                map.put("cantidad", Integer.toString(quantity));
+                return map;
+            }
+            @Override
+            public Map < String, String > getHeaders() throws AuthFailureError {
+                HashMap < String, String > headers = new HashMap <> ();
+                String encodedCredentials = Base64.encodeToString("admin@tiendita.com:root".getBytes(), Base64.NO_WRAP);
+                headers.put("Authorization", "Basic " + encodedCredentials);
+                return headers;
+            }
+        };
+
+        Controlador.getInstance().agregaAlRequestQueue(enviaDatos);
     }
 }

@@ -64,10 +64,11 @@ android:weightSum="1">
         app:layout_constraintHorizontal_bias="0.502" />
 
     <Button
-        android:id="@+id/agregarPorLista"
+        android:id="@+id/checkout"
         android:layout_width="98dp"
         android:layout_height="62dp"
-        android:text="@string/agregarProductoPorLista"
+        android:text="@string/checkout"
+        android:onClick="checkout"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -7,7 +7,7 @@
     <string name="cart">Carrito de</string>
     <string name="borrarProducto">Borrar</string>
     <string name="agregarProductoPorEscaneado">Escanear código</string>
-    <string name="agregarProductoPorLista">Elegir producto</string>
+    <string name="checkout">Finalizar compra</string>
     <string name="dialog_message">¿Agregar el producto #</string>
     <string name="post_dialog_message">al carrito?</string>
     <string name="dialog_title">Resultados del escaneo</string>
