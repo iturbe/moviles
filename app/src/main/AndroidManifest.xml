@@ -47,8 +47,10 @@
             android:name=".Grafica.ProductosMasVendidos"
             android:label="Productos más vendidos" />
         <activity android:name=".Vendedor.ElegirCliente" />
-        <activity android:name=".Vendedor.Carrito"
-            android:label="Carrito"/>
+        <activity
+            android:name=".Vendedor.Carrito"
+            android:label="Carrito" />
+        <activity android:name=".Vendedor.InsertarProducto"></activity>
     </application>
 
 </manifest>

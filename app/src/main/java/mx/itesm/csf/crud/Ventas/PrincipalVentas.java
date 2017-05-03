@@ -36,7 +36,6 @@ import mx.itesm.csf.crud.R;
 
 public class PrincipalVentas extends AppCompatActivity {
 
-
     RecyclerView miRecyclerview;
     RecyclerView.Adapter miAdaptador;
     RecyclerView.LayoutManager miAdministrador;
@@ -70,9 +69,9 @@ public class PrincipalVentas extends AppCompatActivity {
         // permite entre otros acceder a elementos mostrados en la pantalla.
         // https://developer.android.com/reference/android/support/v7/widget/LinearLayoutManager.html
         miAdministrador = new LinearLayoutManager(PrincipalVentas.this,LinearLayoutManager.VERTICAL,false);
-        miRecyclerview.setLayoutManager(miAdministrador);
         miAdaptador = new AdaptadorVentas(PrincipalVentas.this,misElementos);
         miRecyclerview.setAdapter(miAdaptador);
+        miRecyclerview.setLayoutManager(miAdministrador);
 
         // definimos los listeners para cada boton de nuestra interfaz
         botonInsertar.setOnClickListener(new View.OnClickListener() {

@@ -5,4 +5,14 @@
     <string name="welcome">Bienvenido</string>
     <string name="choose">Elije un cliente</string>
     <string name="cart">Carrito de</string>
+    <string name="borrarProducto">Borrar</string>
+    <string name="agregarProductoPorEscaneado">Escanear código</string>
+    <string name="agregarProductoPorLista">Elegir producto</string>
+    <string name="dialog_message">¿Agregar el producto #</string>
+    <string name="post_dialog_message">al carrito?</string>
+    <string name="dialog_title">Resultados del escaneo</string>
+    <string name="addToCart">Agregar al carrito</string>
+    <string name="cancel">Cancelar</string>
+    <string name="prompt">Escanea un código de producto</string>
+    <string name="ok">Ok</string>
 </resources>

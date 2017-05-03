@@ -39,4 +39,7 @@ public class Servicios {
 
     //SERVICIOS DE ESTADÍSTICAS
     public static final String PRODUCTOS_MAS_VENDIDOS="http://ubiquitous.csf.itesm.mx/~pddm-1021621/content/parcial2/proyectoProtected/servicio.masVendidos.php";
+
+    //SERVICIOS DE CHEQUEO
+    public static final String CHECAR_STOCK="http://ubiquitous.csf.itesm.mx/~pddm-1021621/content/parcial2/proyectoProtected/servicio.checkStock.php";
 }
