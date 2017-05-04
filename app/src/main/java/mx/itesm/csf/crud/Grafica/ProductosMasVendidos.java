@@ -18,7 +18,10 @@ import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import org.json.JSONArray;
@@ -72,11 +75,7 @@ public class ProductosMasVendidos extends AppCompatActivity {
 
                                 } else {
                                     JSONObject data = response.getJSONObject(i);
-
-                                    int myfloat = i;
-                                    int myotherfloat = data.getInt("cantidad_total");
-                                    String name = data.getString("nombre");
-                                    entries.add(new BarEntry(i, myotherfloat, name));
+                                    entries.add(new BarEntry(i, data.getInt("cantidad_total"), data.getString("nombre")));
                                 }
 
                             } catch (JSONException e) {
@@ -89,9 +88,32 @@ public class ProductosMasVendidos extends AppCompatActivity {
                         chart.setData(bardata);
                         chart.animateY(5000);
                         dataset.setColors(ColorTemplate.COLORFUL_COLORS);
-                        chart.getDescription().setText("");
-                        chart.getXAxis().setDrawLabels(false);
+                        chart.getDescription().setText(""); // redundante ya que la descripción está en el top bar
                         chart.getLegend().setEnabled(false);
+
+                        String[] values = new String[] {"Product1", "Product2", "Product3", "Product4", "Product5"};
+
+                        XAxis xAxis = chart.getXAxis();
+                        xAxis.setValueFormatter(new MyAxisValueFormatter(values));
+                        xAxis.setDrawAxisLine(false);
+                        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+                        xAxis.setDrawLabels(false);
+                        xAxis.setDrawGridLines(false);
+                        //chart.setVisibleXRangeMaximum(5);
+
+                        dataset.notifyDataSetChanged();
+
+                        chart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+                            @Override
+                            public void onValueSelected(Entry e, Highlight h) {
+                                Toast.makeText(getApplicationContext(), e.getData().toString(), Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onNothingSelected() {
+
+                            }
+                        });
                     }
                 },
                 new Response.ErrorListener() {
