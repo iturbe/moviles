@@ -67,7 +67,7 @@ public class InsertarVentas extends AppCompatActivity {
         // condición para inserción
         if(update == 1)
         {
-            boton_guardar.setText("Actualizar datos");
+            boton_guardar.setText(getResources().getString(R.string.update_data));
             clave_venta.setText(intent_clave_venta);
             clave_producto.setText(intent_clave_producto);
             clave_cliente.setText(intent_clave_cliente);
@@ -100,7 +100,7 @@ public class InsertarVentas extends AppCompatActivity {
 
     private void actualizarDatos()
     {
-        barra_de_progreso.setMessage("Actualizar datos");
+        barra_de_progreso.setMessage(getResources().getString(R.string.update_data));
         barra_de_progreso.setCancelable(false);
         barra_de_progreso.show();
 
@@ -111,7 +111,7 @@ public class InsertarVentas extends AppCompatActivity {
                         barra_de_progreso.cancel();
                         try {
                             JSONObject res = new JSONObject(response);
-                            Toast.makeText(InsertarVentas.this, "Respuesta: "+   res.getString("Mensaje") , Toast.LENGTH_SHORT).show();
+                            Toast.makeText(InsertarVentas.this, getResources().getString(R.string.response) + " : " + res.getString("Mensaje") , Toast.LENGTH_SHORT).show();
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -126,7 +126,7 @@ public class InsertarVentas extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         barra_de_progreso.cancel();
-                        Toast.makeText(InsertarVentas.this, "Respuesta: Error al insertar datos", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(InsertarVentas.this, getResources().getString(R.string.response) + " : " + getResources().getString(R.string.insert_error), Toast.LENGTH_SHORT).show();
 
                     }
                 }){
@@ -157,7 +157,7 @@ public class InsertarVentas extends AppCompatActivity {
 
     private void guardarDatos()
     {
-        barra_de_progreso.setMessage("Insertar datos");
+        barra_de_progreso.setMessage(getResources().getString(R.string.insert_data));
         barra_de_progreso.setCancelable(false);
         barra_de_progreso.show();
 
@@ -168,7 +168,7 @@ public class InsertarVentas extends AppCompatActivity {
                         barra_de_progreso.cancel();
                         try {
                             JSONObject res = new JSONObject(response);
-                            Toast.makeText(InsertarVentas.this, "Respuesta : "+   res.getString("mensaje") , Toast.LENGTH_SHORT).show();
+                            Toast.makeText(InsertarVentas.this, getResources().getString(R.string.response) + " : " + res.getString("mensaje") , Toast.LENGTH_SHORT).show();
                             Log.d("Parámetros: ", response.toString());
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -183,7 +183,7 @@ public class InsertarVentas extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         barra_de_progreso.cancel();
-                        Toast.makeText(InsertarVentas.this, "Respuesta: Error al insertar datos", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(InsertarVentas.this, getResources().getString(R.string.response) + " : " + getResources().getString(R.string.insert_error), Toast.LENGTH_SHORT).show();
                     }
                 }){
             @Override

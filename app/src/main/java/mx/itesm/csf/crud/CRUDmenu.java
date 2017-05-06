@@ -42,7 +42,7 @@ public class CRUDmenu extends AppCompatActivity {
 
         // update mensaje de bienvenida en la parte superior de la actividad
         TextView ventas = (TextView) findViewById(R.id.bienvenido);
-        String welcomeMessage = "Bienvenido, " + nombre + " " + apellido + ".";
+        String welcomeMessage = getResources().getString(R.string.welcome) + ", " + nombre + " " + apellido + ".";
         ventas.setText(welcomeMessage);
 
         //esta actividad si necesita ser accesible con el back button, la dejamos como está

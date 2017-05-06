@@ -27,7 +27,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import mx.itesm.csf.crud.Adaptadores.AdaptadorAutos;
+import mx.itesm.csf.crud.Adaptadores.AdaptadorRopa;
 import mx.itesm.csf.crud.Controladores.Controlador;
 import mx.itesm.csf.crud.Controladores.Servicios;
 import mx.itesm.csf.crud.Modelos.ModeloRopa;
@@ -62,7 +62,7 @@ public class Principal extends AppCompatActivity {
         // utilizamos los componentes de CardView
         miAdministrador = new LinearLayoutManager(Principal.this,LinearLayoutManager.VERTICAL,false);
         miRecyclerview.setLayoutManager(miAdministrador);
-        miAdaptador = new AdaptadorAutos(Principal.this,misElementos);
+        miAdaptador = new AdaptadorRopa(Principal.this,misElementos);
         miRecyclerview.setAdapter(miAdaptador);
 
 
@@ -71,7 +71,7 @@ public class Principal extends AppCompatActivity {
         // https://developer.android.com/reference/android/support/v7/widget/LinearLayoutManager.html
         miAdministrador = new LinearLayoutManager(Principal.this,LinearLayoutManager.VERTICAL,false);
         miRecyclerview.setLayoutManager(miAdministrador);
-        miAdaptador = new AdaptadorAutos(Principal.this,misElementos);
+        miAdaptador = new AdaptadorRopa(Principal.this,misElementos);
         miRecyclerview.setAdapter(miAdaptador);
 
         // definimos los listeners para cada boton de nuestra interfaz
@@ -95,7 +95,7 @@ public class Principal extends AppCompatActivity {
     // creamos nuestro método cargarJSON() con la librería Volley
     private void cargarJSON()
     {
-        barra_de_progreso.setMessage("Cargando datos...");
+        barra_de_progreso.setMessage(getResources().getString(R.string.loading_data));
         barra_de_progreso.setCancelable(false);
         barra_de_progreso.show();
 
@@ -111,7 +111,7 @@ public class Principal extends AppCompatActivity {
                                 if (i == 0) { //solo para el confirmation
                                     JSONObject first = response.getJSONObject(i);
                                     if (first.getString("codigo") == "01"){
-                                        Toast.makeText(getApplicationContext(), "Recibiendo datos...", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.receiving_data), Toast.LENGTH_SHORT).show();
                                     }
 
                                 } else {

@@ -16,7 +16,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Clave de la Venta (opcional)"
+            android:hint="@string/ID_sale_opt"
             android:id="@+id/clave_venta"/>
     </android.support.design.widget.TextInputLayout>
 
@@ -28,7 +28,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Clave del Producto"
+            android:hint="@string/ID_product"
             android:id="@+id/clave_producto"/>
     </android.support.design.widget.TextInputLayout>
 
@@ -40,7 +40,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Clave del Cliente"
+            android:hint="@string/ID_customer"
             android:id="@+id/clave_cliente"/>
     </android.support.design.widget.TextInputLayout>
 
@@ -52,7 +52,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Cantidad"
+            android:hint="@string/quantity"
             android:id="@+id/cantidad"/>
     </android.support.design.widget.TextInputLayout>
 
@@ -66,14 +66,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Cancelar"
+            android:text="@string/cancel"
             android:id="@+id/boton_cancelar"/>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Guardar"
+            android:text="@string/save"
             android:id="@+id/boton_guardar"/>
     </LinearLayout>
 

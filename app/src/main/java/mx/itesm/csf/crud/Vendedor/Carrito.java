@@ -81,7 +81,7 @@ public class Carrito extends AppCompatActivity {
 
         //escribir mensaje de bienvenida/verificación
         clientName = (TextView) findViewById(R.id.clientName);
-        clientName.setText("Carrito de " + nombreCliente + " " + apellidoCliente + " (" + idCliente + ")");
+        clientName.setText(nombreCliente + " " + apellidoCliente + " (# " + idCliente + ") | " + getResources().getString(R.string.cart));
         barra_de_progreso = new ProgressDialog(Carrito.this);
 
         carrito = new ArrayList<>();
@@ -167,7 +167,7 @@ public class Carrito extends AppCompatActivity {
 
     // creamos nuestro método cargarJSON() con la librería Volley
     private void cargarJSON(){
-        barra_de_progreso.setMessage("Cargando datos...");
+        barra_de_progreso.setMessage(getResources().getString(R.string.loading_data));
         barra_de_progreso.setCancelable(false);
         barra_de_progreso.show();
 
@@ -185,7 +185,6 @@ public class Carrito extends AppCompatActivity {
                             if (response.getInt("success") == 1){
                                 carrito.add(new ProductoEnCarrito(productID, response.getString("nombre"), response.getInt("precio"), desiredQuantity));
                                 Toast.makeText(Carrito.this, getResources().getString(R.string.added_to_cart) + " " + response.getString("nombre") + " (x" + desiredQuantity + ")", Toast.LENGTH_SHORT).show();
-                                Log.d("why not", "a ver");
                             } else {
                                 Toast.makeText(Carrito.this, getResources().getString(R.string.could_not_add_to_cart), Toast.LENGTH_SHORT).show();
                             }
@@ -247,7 +246,7 @@ public class Carrito extends AppCompatActivity {
     //insertar venta
     private void vender(final int productID, final int customerID, final int cartItemNumber, final int quantity)
     {
-        barra_de_progreso.setMessage("Insertar datos");
+        barra_de_progreso.setMessage(getResources().getString(R.string.insert_data));
         barra_de_progreso.setCancelable(false);
         barra_de_progreso.show();
 
@@ -258,13 +257,14 @@ public class Carrito extends AppCompatActivity {
                         barra_de_progreso.cancel();
                         try {
                             JSONObject res = new JSONObject(response);
-                            Toast.makeText(Carrito.this, "Respuesta : "+   res.getString("mensaje") , Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Carrito.this, getResources().getString(R.string.response) + " : " + res.getString("mensaje") , Toast.LENGTH_SHORT).show();
                             Log.d("Parámetros: ", response.toString());
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
 
                         // notificar de una venta exitosa
+                        // TODO: conforme se hagan ventas exitosas, agregar a un array de objetos vendidos. luego pasar ese array al activity de la pantalla de confirmación
                         Toast.makeText(Carrito.this, "Venta del cartItem #" + cartItemNumber + " exitosa!" , Toast.LENGTH_SHORT).show();
                         Log.d("vendido", quantity + " " + productID + " (p_id)");
                         //Intent intent = new Intent(InsertarVentas.this, PrincipalVentas.class);
@@ -276,7 +276,7 @@ public class Carrito extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         barra_de_progreso.cancel();
-                        Toast.makeText(Carrito.this, "Respuesta: Error al insertar datos", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Carrito.this, getResources().getString(R.string.response) + " : " + getResources().getString(R.string.insert_error), Toast.LENGTH_SHORT).show();
                     }
                 }){
             @Override

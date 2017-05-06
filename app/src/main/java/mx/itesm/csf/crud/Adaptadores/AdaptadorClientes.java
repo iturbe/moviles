@@ -11,7 +11,6 @@ import android.widget.TextView;
 import java.util.List;
 
 import mx.itesm.csf.crud.Clientes.InsertarClientes;
-import mx.itesm.csf.crud.Ropa.InsertarDatos;
 import mx.itesm.csf.crud.Modelos.ModeloClientes;
 import mx.itesm.csf.crud.R;
 
@@ -48,7 +47,7 @@ public class AdaptadorClientes extends RecyclerView.Adapter<AdaptadorClientes.Co
     public void onBindViewHolder(AdaptadorClientes.ContenedorDeDatos titulo, int position) {
         ModeloClientes datamodel  = misElementos.get(position);
         titulo.Nombre.setText(datamodel.getNombre() + " " + datamodel.getApellido());
-        titulo.Clave_auto.setText(datamodel.getC_id() + " ");
+        titulo.clave_cliente.setText(datamodel.getC_id() + " ");
 
         titulo.datamodel = datamodel;
     }
@@ -66,7 +65,7 @@ public class AdaptadorClientes extends RecyclerView.Adapter<AdaptadorClientes.Co
     // constructor utilizando como siempre el método findViewById() sobre la vista recibida como parámetro.
     class ContenedorDeDatos extends RecyclerView.ViewHolder
     {
-        TextView Nombre,Clave_auto;
+        TextView Nombre, clave_cliente;
         ModeloClientes datamodel;
 
         // definimos nuestra vista
@@ -76,7 +75,7 @@ public class AdaptadorClientes extends RecyclerView.Adapter<AdaptadorClientes.Co
 
             // mapeamos los componentes de la interfaz
             Nombre = (TextView) view.findViewById(R.id.Nombre);
-            Clave_auto = (TextView) view.findViewById(R.id.Clave_auto);
+            clave_cliente = (TextView) view.findViewById(R.id.clave_articulo);
 
             // definimos el listener
             view.setOnClickListener(new View.OnClickListener() {

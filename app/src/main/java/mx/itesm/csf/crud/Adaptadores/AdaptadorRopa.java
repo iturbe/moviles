@@ -7,21 +7,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import java.util.List;
 
-import mx.itesm.csf.crud.Modelos.ProductoEnCarrito;
+import mx.itesm.csf.crud.Ropa.InsertarDatos;
+import mx.itesm.csf.crud.Modelos.ModeloRopa;
 import mx.itesm.csf.crud.R;
-import mx.itesm.csf.crud.Vendedor.InsertarProducto;
 
-/**
- * Created by Alonso on 5/2/17.
- */
-
-public class AdaptadorCarrito extends RecyclerView.Adapter<AdaptadorCarrito.ContenedorDeDatos> {
+// Para usar el widget RecyclerView, tenemos que especificar un adaptador y un administrador de diseño.
+// Para crear un adaptador, tenemos que extender la clase RecyclerView.Adapter. Los detalles de la implementación
+// dependen de las especificaciones de nuestro conjunto de datos y los tipos de vistas que necesitamos en nuestra app.
+public class AdaptadorRopa extends RecyclerView.Adapter<AdaptadorRopa.ContenedorDeDatos> {
 
     // definimos una lista en donde vamos a incorporar todos los autos de nuestro JSON
-    private List<ProductoEnCarrito> misElementos ;
+    private List<ModeloRopa> misElementos ;
 
     // Context representa el estado actual de la aplicación y permite obtener información acerca de su entorno de ejecución
     // permite el acceso a recursos y clases específicos de la aplicación y también efectuar operaciones como lanzar actividades,
@@ -29,7 +27,7 @@ public class AdaptadorCarrito extends RecyclerView.Adapter<AdaptadorCarrito.Cont
     private Context context;
 
     // creamos el método para enviar los parámetros de contexto y la lista de elementos
-    public AdaptadorCarrito (Context context, List<ProductoEnCarrito> elementos)
+    public AdaptadorRopa(Context context, List<ModeloRopa> elementos)
     {
         this.misElementos = elementos;
         this.context = context;
@@ -46,11 +44,11 @@ public class AdaptadorCarrito extends RecyclerView.Adapter<AdaptadorCarrito.Cont
     // Usando como base el ViewHolder y lo personalizamos
     @Override
     public void onBindViewHolder(ContenedorDeDatos titulo, int position) {
-        ProductoEnCarrito producto  = misElementos.get(position);
-        titulo.Nombre.setText(producto.getNombre() + " | $" + producto.getPrecio() + " (x" + producto.getCantidad() + ")" + " = $" + producto.getSubtotal());
-        titulo.Clave_auto.setText(position+1 + " "); //el +1 es para que el índice no empiece en cero
+        ModeloRopa datamodel  = misElementos.get(position);
+        titulo.Nombre.setText(datamodel.getNombre() + " | $" + datamodel.getPrecio() + " | (" + datamodel.getStock() + ")");
+        titulo.clave_articulo.setText(datamodel.getP_id() + " ");
 
-        titulo.datamodel = producto;
+        titulo.datamodel = datamodel;
     }
 
     // obtenemos el tamaño de elementos que tenemos en la lista
@@ -59,15 +57,15 @@ public class AdaptadorCarrito extends RecyclerView.Adapter<AdaptadorCarrito.Cont
         return misElementos.size();
     }
 
-    // Para poder seguir con la implementación del adaptador debemos definir primero el ViewHolder necesario
-    // para nuestra app. Lo definiremos como clase ContenedorDeDatos interna a nuestro adaptador, extendiendo de la clase
-    // RecyclerView.ViewHolder, sólo tendremos que incluir como atributos las referencias
-    // a los controles del layout de un elemento de la lista (en nuestro caso los dos TextView) e inicializarlas en el
-    // constructor utilizando como siempre el método findViewById() sobre la vista recibida como parámetro.
+     // Para poder seguir con la implementación del adaptador debemos definir primero el ViewHolder necesario
+     // para nuestra app. Lo definiremos como clase ContenedorDeDatos interna a nuestro adaptador, extendiendo de la clase
+     // RecyclerView.ViewHolder, sólo tendremos que incluir como atributos las referencias
+     // a los controles del layout de un elemento de la lista (en nuestro caso los dos TextView) e inicializarlas en el
+     // constructor utilizando como siempre el método findViewById() sobre la vista recibida como parámetro.
     class ContenedorDeDatos extends RecyclerView.ViewHolder
     {
-        TextView Nombre, Clave_auto;
-        ProductoEnCarrito datamodel;
+        TextView Nombre, clave_articulo;
+        ModeloRopa datamodel;
 
         // definimos nuestra vista
         public  ContenedorDeDatos (View view)
@@ -76,15 +74,21 @@ public class AdaptadorCarrito extends RecyclerView.Adapter<AdaptadorCarrito.Cont
 
             // mapeamos los componentes de la interfaz
             Nombre = (TextView) view.findViewById(R.id.Nombre);
-            Clave_auto = (TextView) view.findViewById(R.id.clave_articulo);
+            clave_articulo = (TextView) view.findViewById(R.id.clave_articulo);
 
             // definimos el listener
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent update = new Intent(context, InsertarProducto.class);
+                    Intent update = new Intent(context, InsertarDatos.class);
                     update.putExtra("update",1);
-                    update.putExtra("cantidad",datamodel.getCantidad());
+                    //update.putExtra("clave",datamodel.getClave_auto());
+                    update.putExtra("clave",datamodel.getP_id());
+                    update.putExtra("nombre",datamodel.getNombre());
+                    update.putExtra("precio",datamodel.getPrecio());
+                    update.putExtra("imagen",datamodel.getImagen());
+                    update.putExtra("stock",datamodel.getStock());
+
                     context.startActivity(update);
                 }
             });
