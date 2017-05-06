@@ -28,9 +28,9 @@ public class Servicios {
     public static final String VENTAS_UPDATE = "http://ubiquitous.csf.itesm.mx/~pddm-1021621/content/parcial2/proyectoProtected/servicio.u.ventas.php";
 
     //SERVICIOS DE SPLASH
-    public static final String SPLASH1 = "http://ubiquitous.csf.itesm.mx/~pddm-1021621/content/parcial2/splashResources/sp1.jpg";
-    public static final String SPLASH2 = "http://ubiquitous.csf.itesm.mx/~pddm-1021621/content/parcial2/splashResources/sp2.jpg";
-    public static final String SPLASH3 = "http://ubiquitous.csf.itesm.mx/~pddm-1021621/content/parcial2/splashResources/sp3.jpg";
+    public static final String SPLASH4 = "http://ubiquitous.csf.itesm.mx/~pddm-1021621/content/parcial2/splashResources/sp4.png";
+    public static final String SPLASH5 = "http://ubiquitous.csf.itesm.mx/~pddm-1021621/content/parcial2/splashResources/sp5.png";
+    public static final String SPLASH6 = "http://ubiquitous.csf.itesm.mx/~pddm-1021621/content/parcial2/splashResources/sp6.png";
     public static final String BLACK = "http://ubiquitous.csf.itesm.mx/~pddm-1021621/content/parcial2/splashResources/black.png";
 
     //SERVICIOS DE LOGIN/REGISTER

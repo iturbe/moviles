@@ -114,7 +114,7 @@ public class Carrito extends AppCompatActivity {
     // función que efectúa el proceso de checkout del carrito
     public void checkout(View view){
         if (carrito.isEmpty()){
-            Toast.makeText(Carrito.this, "No hay nada en el carrito!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Carrito.this, getResources().getString(R.string.empty_cart), Toast.LENGTH_SHORT).show();
         } else {
             for (int a = 0; a < carrito.size(); a++){
                 vender(carrito.get(a).getP_id(), idCliente, a, carrito.get(a).getCantidad());
@@ -184,10 +184,10 @@ public class Carrito extends AppCompatActivity {
                         try {
                             if (response.getInt("success") == 1){
                                 carrito.add(new ProductoEnCarrito(productID, response.getString("nombre"), response.getInt("precio"), desiredQuantity));
-                                Toast.makeText(Carrito.this, "Agregado al carrito: " + response.getString("nombre") + " (x" + desiredQuantity + ")", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Carrito.this, getResources().getString(R.string.added_to_cart) + " " + response.getString("nombre") + " (x" + desiredQuantity + ")", Toast.LENGTH_SHORT).show();
                                 Log.d("why not", "a ver");
                             } else {
-                                Toast.makeText(Carrito.this, "No se pudo agregar al carrito. No existe un producto con ese ID o no hay suficiente stock.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Carrito.this, getResources().getString(R.string.could_not_add_to_cart), Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
