@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import mx.itesm.csf.crud.Ropa.InsertarDatos;
 import mx.itesm.csf.crud.Modelos.ModeloVentas;
 import mx.itesm.csf.crud.R;
 import mx.itesm.csf.crud.Ventas.InsertarVentas;
@@ -48,7 +47,7 @@ public class AdaptadorVentas extends RecyclerView.Adapter<AdaptadorVentas.Conten
     public void onBindViewHolder(AdaptadorVentas.ContenedorDeDatos titulo, int position) {
         ModeloVentas datamodel  = misElementos.get(position);
         titulo.Cantidad.setText("Cliente # " + datamodel.getC_id() + " | Producto # " + datamodel.getP_id() + " | Cantidad: " + datamodel.getCantidad());
-        titulo.Clave_v.setText("# " + datamodel.getV_id() + ": ");
+        titulo.clave_venta.setText("# " + datamodel.getV_id() + ": ");
 
         titulo.datamodel = datamodel;
     }
@@ -66,7 +65,7 @@ public class AdaptadorVentas extends RecyclerView.Adapter<AdaptadorVentas.Conten
     // constructor utilizando como siempre el método findViewById() sobre la vista recibida como parámetro.
     class ContenedorDeDatos extends RecyclerView.ViewHolder
     {
-        TextView Cantidad,Clave_v;
+        TextView Cantidad, clave_venta;
         ModeloVentas datamodel;
 
         // definimos nuestra vista
@@ -76,7 +75,7 @@ public class AdaptadorVentas extends RecyclerView.Adapter<AdaptadorVentas.Conten
 
             // mapeamos los componentes de la interfaz
             Cantidad = (TextView) view.findViewById(R.id.Nombre);
-            Clave_v = (TextView) view.findViewById(R.id.Clave_auto);
+            clave_venta = (TextView) view.findViewById(R.id.clave_articulo);
 
             // definimos el listener
             view.setOnClickListener(new View.OnClickListener() {

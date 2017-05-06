@@ -60,11 +60,10 @@ public class BorrarVentas extends AppCompatActivity {
     // metodo para borrar el registro
     private void borraRegistro()
     {
-        barra_de_progreso.setMessage("Eliminando registro...");
+        barra_de_progreso.setMessage(getResources().getString(R.string.deleting_entry));
         barra_de_progreso.setCancelable(false);
         barra_de_progreso.show();
 
-        // usamos el método POST --> ver filminas del porqué hacemos esto
         StringRequest requestBorrar = new StringRequest(Request.Method.POST, VENTAS_DELETE,
                 new Response.Listener<String>() {
                     @Override
@@ -73,7 +72,7 @@ public class BorrarVentas extends AppCompatActivity {
                         Log.d("volley","Respuesta : " + response.toString());
                         try {
                             JSONObject res = new JSONObject(response);
-                            Toast.makeText(BorrarVentas.this,"Respuesta: " +res.getString("Mensaje"), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(BorrarVentas.this,getResources().getString(R.string.response) + " : " + res.getString("Mensaje"), Toast.LENGTH_SHORT).show();
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -89,7 +88,7 @@ public class BorrarVentas extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         barra_de_progreso.cancel();
                         Log.d("volley", "Error : " + error.getMessage());
-                        Toast.makeText(BorrarVentas.this, "Respuesta: Error al eliminar registro", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(BorrarVentas.this, getResources().getString(R.string.response) + " : " + getResources().getString(R.string.delete_error), Toast.LENGTH_SHORT).show();
                     }
                 }){
             @Override

@@ -4,16 +4,12 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.view.View;
 import android.util.Log;
-import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -35,8 +31,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import mx.itesm.csf.crud.Clientes.InsertarClientes;
-import mx.itesm.csf.crud.Clientes.PrincipalClientes;
 import mx.itesm.csf.crud.Controladores.Controlador;
 import mx.itesm.csf.crud.Controladores.Servicios;
 import mx.itesm.csf.crud.Modelos.ModeloClientes;
@@ -93,7 +87,7 @@ public class ElegirCliente extends Activity implements OnItemSelectedListener {
         // setup del spinner
         myAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, nombresClientes);
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        clientes.setPrompt(myContext.getString(R.string.choose));
+        clientes.setPrompt(myContext.getString(R.string.pick_customer));
         clientes.setAdapter(myAdapter);
         clientes.setOnItemSelectedListener(this);
         Log.d("prompt", clientes.getPrompt().toString());
@@ -102,7 +96,7 @@ public class ElegirCliente extends Activity implements OnItemSelectedListener {
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        botonContinuar.setText("Atender a " + nombresClientes.get(position));
+        botonContinuar.setText(getResources().getString(R.string.shop_with) + " " + nombresClientes.get(position));
 
         //limpiar
         next.removeExtra("c_id");
@@ -123,7 +117,7 @@ public class ElegirCliente extends Activity implements OnItemSelectedListener {
     // creamos nuestro método cargarJSON() con la librería Volley
     private void cargarJSON()
     {
-        barra_de_progreso.setMessage("Cargando datos...");
+        barra_de_progreso.setMessage(getResources().getString(R.string.loading_data));
         barra_de_progreso.setCancelable(false);
         barra_de_progreso.show();
 
@@ -139,7 +133,7 @@ public class ElegirCliente extends Activity implements OnItemSelectedListener {
                                 if (i == 0) { //solo para el confirmation
                                     JSONObject first = response.getJSONObject(i);
                                     if (first.getString("codigo") == "01"){
-                                        Toast.makeText(getApplicationContext(), "Recibiendo datos...", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.receiving_data), Toast.LENGTH_SHORT).show();
                                     }
 
                                 } else {
@@ -157,7 +151,7 @@ public class ElegirCliente extends Activity implements OnItemSelectedListener {
                             }
                         }
                         myAdapter.notifyDataSetChanged();
-                        clientes.setPrompt(myContext.getString(R.string.choose));
+                        clientes.setPrompt(myContext.getString(R.string.pick_customer));
                     }
                 },
                 new Response.ErrorListener() {

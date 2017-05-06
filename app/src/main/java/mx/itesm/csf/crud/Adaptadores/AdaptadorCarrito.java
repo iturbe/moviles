@@ -10,17 +10,18 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import mx.itesm.csf.crud.Empleados.InsertarEmpleados;
-import mx.itesm.csf.crud.Modelos.ModeloEmpleados;
+import mx.itesm.csf.crud.Modelos.ProductoEnCarrito;
 import mx.itesm.csf.crud.R;
+import mx.itesm.csf.crud.Vendedor.InsertarProducto;
 
 /**
- * Created by biller on 4/2/17.
+ * Created by Alonso on 5/2/17.
  */
 
-public class AdaptadorEmpleados extends RecyclerView.Adapter<AdaptadorEmpleados.ContenedorDeDatos> {
+public class AdaptadorCarrito extends RecyclerView.Adapter<AdaptadorCarrito.ContenedorDeDatos> {
+
     // definimos una lista en donde vamos a incorporar todos los autos de nuestro JSON
-    private List<ModeloEmpleados> misElementos ;
+    private List<ProductoEnCarrito> misElementos ;
 
     // Context representa el estado actual de la aplicación y permite obtener información acerca de su entorno de ejecución
     // permite el acceso a recursos y clases específicos de la aplicación y también efectuar operaciones como lanzar actividades,
@@ -28,7 +29,7 @@ public class AdaptadorEmpleados extends RecyclerView.Adapter<AdaptadorEmpleados.
     private Context context;
 
     // creamos el método para enviar los parámetros de contexto y la lista de elementos
-    public AdaptadorEmpleados (Context context, List<ModeloEmpleados> elementos)
+    public AdaptadorCarrito (Context context, List<ProductoEnCarrito> elementos)
     {
         this.misElementos = elementos;
         this.context = context;
@@ -36,20 +37,20 @@ public class AdaptadorEmpleados extends RecyclerView.Adapter<AdaptadorEmpleados.
 
     // Creamos el ViewHolder con las vista de un elemento sin personalizar
     @Override
-    public AdaptadorEmpleados.ContenedorDeDatos onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ContenedorDeDatos onCreateViewHolder(ViewGroup parent, int viewType) {
         View layout = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_filas,parent,false);
-        AdaptadorEmpleados.ContenedorDeDatos contenedorDeDatos = new AdaptadorEmpleados.ContenedorDeDatos(layout);
+        ContenedorDeDatos contenedorDeDatos = new ContenedorDeDatos(layout);
         return contenedorDeDatos;
     }
 
     // Usando como base el ViewHolder y lo personalizamos
     @Override
-    public void onBindViewHolder(AdaptadorEmpleados.ContenedorDeDatos titulo, int position) {
-        ModeloEmpleados datamodel  = misElementos.get(position);
-        titulo.Nombre.setText(datamodel.getNombre());
-        titulo.clave_empleado.setText(datamodel.getE_id() + " ");
+    public void onBindViewHolder(ContenedorDeDatos titulo, int position) {
+        ProductoEnCarrito producto  = misElementos.get(position);
+        titulo.Nombre.setText(producto.getNombre() + " | $" + producto.getPrecio() + " (x" + producto.getCantidad() + ")" + " = $" + producto.getSubtotal());
+        titulo.Clave_auto.setText(position+1 + " "); //el +1 es para que el índice no empiece en cero
 
-        titulo.datamodel = datamodel;
+        titulo.datamodel = producto;
     }
 
     // obtenemos el tamaño de elementos que tenemos en la lista
@@ -65,8 +66,8 @@ public class AdaptadorEmpleados extends RecyclerView.Adapter<AdaptadorEmpleados.
     // constructor utilizando como siempre el método findViewById() sobre la vista recibida como parámetro.
     class ContenedorDeDatos extends RecyclerView.ViewHolder
     {
-        TextView Nombre, clave_empleado;
-        ModeloEmpleados datamodel;
+        TextView Nombre, Clave_auto;
+        ProductoEnCarrito datamodel;
 
         // definimos nuestra vista
         public  ContenedorDeDatos (View view)
@@ -75,20 +76,15 @@ public class AdaptadorEmpleados extends RecyclerView.Adapter<AdaptadorEmpleados.
 
             // mapeamos los componentes de la interfaz
             Nombre = (TextView) view.findViewById(R.id.Nombre);
-            clave_empleado = (TextView) view.findViewById(R.id.clave_articulo);
+            Clave_auto = (TextView) view.findViewById(R.id.clave_articulo);
 
             // definimos el listener
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent update = new Intent(context, InsertarEmpleados.class);
+                    Intent update = new Intent(context, InsertarProducto.class);
                     update.putExtra("update",1);
-                    update.putExtra("clave",datamodel.getE_id());
-                    update.putExtra("nombre",datamodel.getNombre());
-                    update.putExtra("apellido",datamodel.getApellido());
-                    update.putExtra("admin",datamodel.getAdmin());
-                    update.putExtra("correo",datamodel.getCorreo());
-                    update.putExtra("password",datamodel.getPassword());
+                    update.putExtra("cantidad",datamodel.getCantidad());
                     context.startActivity(update);
                 }
             });

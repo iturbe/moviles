@@ -70,7 +70,7 @@ public class InsertarEmpleados extends AppCompatActivity {
         // condición para inserción
         if(update == 1)
         {
-            boton_guardar.setText("Actualizar datos");
+            boton_guardar.setText(getResources().getString(R.string.update_data));
             clave.setText(intent_clave);
             clave.setVisibility(View.GONE);
             nombre.setText(intent_nombre);
@@ -106,7 +106,7 @@ public class InsertarEmpleados extends AppCompatActivity {
 
     private void actualizarDatos()
     {
-        barra_de_progreso.setMessage("Actualizar datos");
+        barra_de_progreso.setMessage(getResources().getString(R.string.update_data));
         barra_de_progreso.setCancelable(false);
         barra_de_progreso.show();
 
@@ -117,7 +117,7 @@ public class InsertarEmpleados extends AppCompatActivity {
                         barra_de_progreso.cancel();
                         try {
                             JSONObject res = new JSONObject(response);
-                            Toast.makeText(InsertarEmpleados.this, "Respuesta: "+   res.getString("Mensaje") , Toast.LENGTH_SHORT).show();
+                            Toast.makeText(InsertarEmpleados.this, getResources().getString(R.string.response) +  " : " + res.getString("Mensaje") , Toast.LENGTH_SHORT).show();
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -132,7 +132,7 @@ public class InsertarEmpleados extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         barra_de_progreso.cancel();
-                        Toast.makeText(InsertarEmpleados.this, "Respuesta: Error al insertar datos", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(InsertarEmpleados.this, getResources().getString(R.string.response) + " : " + getResources().getString(R.string.insert_error), Toast.LENGTH_SHORT).show();
 
                     }
                 }){
@@ -165,7 +165,7 @@ public class InsertarEmpleados extends AppCompatActivity {
 
     private void guardarDatos()
     {
-        barra_de_progreso.setMessage("Insertar datos");
+        barra_de_progreso.setMessage(getResources().getString(R.string.insert_data));
         barra_de_progreso.setCancelable(false);
         barra_de_progreso.show();
 
@@ -176,7 +176,7 @@ public class InsertarEmpleados extends AppCompatActivity {
                         barra_de_progreso.cancel();
                         try {
                             JSONObject res = new JSONObject(response);
-                            Toast.makeText(InsertarEmpleados.this, "Respuesta: "+   res.getString("mensaje") , Toast.LENGTH_SHORT).show();
+                            Toast.makeText(InsertarEmpleados.this, getResources().getString(R.string.response) + " : " + res.getString("mensaje") , Toast.LENGTH_SHORT).show();
                             Log.d("Parámetros: ", response.toString());
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -191,7 +191,7 @@ public class InsertarEmpleados extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         barra_de_progreso.cancel();
-                        Toast.makeText(InsertarEmpleados.this, "Respuesta: Error al insertar datos", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(InsertarEmpleados.this, getResources().getString(R.string.response) + " : " + getResources().getString(R.string.insert_error), Toast.LENGTH_SHORT).show();
                     }
                 }){
             @Override

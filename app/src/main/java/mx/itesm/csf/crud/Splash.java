@@ -22,7 +22,7 @@ import static android.net.Uri.parse;
 
 public class Splash extends AppCompatActivity {
 
-    private long wait = 2500;
+    private long wait = 5000;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -44,13 +44,13 @@ public class Splash extends AppCompatActivity {
         //mostrar imagen aleatoria
         switch (n) {
             case 0:
-                URL = Servicios.SPLASH1;
+                URL = Servicios.SPLASH4;
                 break;
             case 1:
-                URL = Servicios.SPLASH2;
+                URL = Servicios.SPLASH5;
                 break;
             case 2:
-                URL = Servicios.SPLASH3;
+                URL = Servicios.SPLASH6;
                 break;
             default:
                 URL = Servicios.BLACK;

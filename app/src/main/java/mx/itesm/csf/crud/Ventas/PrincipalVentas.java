@@ -36,7 +36,6 @@ import mx.itesm.csf.crud.R;
 
 public class PrincipalVentas extends AppCompatActivity {
 
-
     RecyclerView miRecyclerview;
     RecyclerView.Adapter miAdaptador;
     RecyclerView.LayoutManager miAdministrador;
@@ -70,9 +69,9 @@ public class PrincipalVentas extends AppCompatActivity {
         // permite entre otros acceder a elementos mostrados en la pantalla.
         // https://developer.android.com/reference/android/support/v7/widget/LinearLayoutManager.html
         miAdministrador = new LinearLayoutManager(PrincipalVentas.this,LinearLayoutManager.VERTICAL,false);
-        miRecyclerview.setLayoutManager(miAdministrador);
         miAdaptador = new AdaptadorVentas(PrincipalVentas.this,misElementos);
         miRecyclerview.setAdapter(miAdaptador);
+        miRecyclerview.setLayoutManager(miAdministrador);
 
         // definimos los listeners para cada boton de nuestra interfaz
         botonInsertar.setOnClickListener(new View.OnClickListener() {
@@ -95,7 +94,7 @@ public class PrincipalVentas extends AppCompatActivity {
     // creamos nuestro método cargarJSON() con la librería Volley
     private void cargarJSON()
     {
-        barra_de_progreso.setMessage("Cargando datos...");
+        barra_de_progreso.setMessage(getResources().getString(R.string.loading_data));
         barra_de_progreso.setCancelable(false);
         barra_de_progreso.show();
 
@@ -111,7 +110,7 @@ public class PrincipalVentas extends AppCompatActivity {
                                 if (i == 0) { //solo para el confirmation
                                     JSONObject first = response.getJSONObject(i);
                                     if (first.getString("codigo") == "01"){
-                                        Toast.makeText(getApplicationContext(), "Recibiendo datos...", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.receiving_data), Toast.LENGTH_SHORT).show();
                                     }
 
                                 } else {

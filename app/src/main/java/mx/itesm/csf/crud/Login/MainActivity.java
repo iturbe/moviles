@@ -85,8 +85,8 @@ public class MainActivity extends AppCompatActivity {
 
                             } else {
                                 AlertDialog.Builder builder= new AlertDialog.Builder(MainActivity.this);
-                                builder.setMessage("Login Failed")
-                                        .setNegativeButton("Retry", null)
+                                builder.setMessage(getResources().getString(R.string.login_failed))
+                                        .setNegativeButton(getResources().getString(R.string.retry), null)
                                         .create()
                                         .show();
                             }

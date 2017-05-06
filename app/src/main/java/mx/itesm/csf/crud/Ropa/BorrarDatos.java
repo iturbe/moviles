@@ -59,7 +59,7 @@ public class BorrarDatos extends AppCompatActivity {
     // metodo para borrar el registro
     private void borraRegistro()
     {
-        barra_de_progreso.setMessage("Eliminando registro...");
+        barra_de_progreso.setMessage(getResources().getString(R.string.deleting_entry));
         barra_de_progreso.setCancelable(false);
         barra_de_progreso.show();
 
@@ -72,7 +72,7 @@ public class BorrarDatos extends AppCompatActivity {
                         Log.d("volley","Respuesta : " + response.toString());
                         try {
                             JSONObject res = new JSONObject(response);
-                            Toast.makeText(BorrarDatos.this,"Respuesta : " +res.getString("Mensaje"), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(BorrarDatos.this, getResources().getString(R.string.response) + " : " + res.getString("Mensaje"), Toast.LENGTH_SHORT).show();
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -88,7 +88,7 @@ public class BorrarDatos extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         barra_de_progreso.cancel();
                         Log.d("volley", "Error : " + error.getMessage());
-                        Toast.makeText(BorrarDatos.this, "Respuesta: Error al eliminar registro", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(BorrarDatos.this, getResources().getString(R.string.response) + " : " + getResources().getString(R.string.delete_error), Toast.LENGTH_SHORT).show();
                     }
                 }){
             @Override
