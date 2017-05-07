@@ -12,7 +12,7 @@ import java.util.List;
 
 import mx.itesm.csf.crud.Modelos.ProductoEnCarrito;
 import mx.itesm.csf.crud.R;
-import mx.itesm.csf.crud.Vendedor.InsertarProducto;
+import mx.itesm.csf.crud.Vendedor.Checkout;
 
 /**
  * Created by Alonso on 5/2/17.
@@ -82,7 +82,7 @@ public class AdaptadorCarrito extends RecyclerView.Adapter<AdaptadorCarrito.Cont
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent update = new Intent(context, InsertarProducto.class);
+                    Intent update = new Intent(context, Checkout.class);
                     update.putExtra("update",1);
                     update.putExtra("cantidad",datamodel.getCantidad());
                     context.startActivity(update);

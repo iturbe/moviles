@@ -45,6 +45,8 @@
     <string name="password">contraseña</string>
     <string name="register">Registro</string>
     <string name="see_logs">Ver reportes</string>
+    <string name="sale_error">Hubo un error con el procesamiento de la venta. Por favor acude con el gerente.</string>
+    <string name="sale_success">¡Venta exitosa! Entrega los productos al cliente.</string>
     <string name="ID_customer">Clave del cliente</string>
     <string name="delete_entry">Borrar registro</string>
     <string name="ID_product">Clave del artículo</string>
@@ -61,6 +63,7 @@
     <string name="ID_sale_opt">Clave de la venta (opcional)</string>
     <string name="quantity">Cantidad</string>
     <string name="insert">Insertar</string>
+    <string name="inserting_data">Insertando datos...</string>
     <string name="insert_data">Insertar datos</string>
     <string name="delete">Borrar</string>
     <string name="retail_price">Precio de venta</string>
@@ -79,5 +82,7 @@
     <string name="clients">Clientes</string>
     <string name="sales">Ventas</string>
     <string name="view_graphs">Ver gráfica</string>
+    <string name="confirmation">Confirmación de pedido</string>
+    <string name="confirm_order">Confirmar pedido</string>
 
 </resources>

@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,30 +21,23 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import mx.itesm.csf.crud.Adaptadores.AdaptadorVentas;
 import mx.itesm.csf.crud.Controladores.Controlador;
 import mx.itesm.csf.crud.Controladores.Servicios;
-import mx.itesm.csf.crud.Modelos.ModeloRopa;
-import mx.itesm.csf.crud.Modelos.ModeloVentas;
 import mx.itesm.csf.crud.Modelos.ProductoEnCarrito;
 import mx.itesm.csf.crud.R;
-import mx.itesm.csf.crud.Ventas.PrincipalVentas;
 import mx.itesm.csf.crud.Adaptadores.AdaptadorCarrito;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -116,9 +108,15 @@ public class Carrito extends AppCompatActivity {
         if (carrito.isEmpty()){
             Toast.makeText(Carrito.this, getResources().getString(R.string.empty_cart), Toast.LENGTH_SHORT).show();
         } else {
-            for (int a = 0; a < carrito.size(); a++){
-                vender(carrito.get(a).getP_id(), idCliente, a, carrito.get(a).getCantidad());
-            }
+            // hay mínimo un objeto en el carrito, nos movemos a la pantalla de checkout/confirmación de órden
+            Intent intent = new Intent(Carrito.this, Checkout.class);
+
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("carrito", carrito);
+            intent.putExtras(bundle);
+            intent.putExtra("c_id", idCliente);
+
+            startActivity(intent);
         }
     }
 
@@ -241,61 +239,5 @@ public class Carrito extends AppCompatActivity {
                 .setNegativeButton(android.R.string.cancel, null)
                 .show();
 
-    }
-
-    //insertar venta
-    private void vender(final int productID, final int customerID, final int cartItemNumber, final int quantity)
-    {
-        barra_de_progreso.setMessage(getResources().getString(R.string.insert_data));
-        barra_de_progreso.setCancelable(false);
-        barra_de_progreso.show();
-
-        StringRequest enviaDatos = new StringRequest(Request.Method.POST, VENTAS_CREATE,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        barra_de_progreso.cancel();
-                        try {
-                            JSONObject res = new JSONObject(response);
-                            Toast.makeText(Carrito.this, getResources().getString(R.string.response) + " : " + res.getString("mensaje") , Toast.LENGTH_SHORT).show();
-                            Log.d("Parámetros: ", response.toString());
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                        // notificar de una venta exitosa
-                        // TODO: conforme se hagan ventas exitosas, agregar a un array de objetos vendidos. luego pasar ese array al activity de la pantalla de confirmación
-                        Toast.makeText(Carrito.this, "Venta del cartItem #" + cartItemNumber + " exitosa!" , Toast.LENGTH_SHORT).show();
-                        Log.d("vendido", quantity + " " + productID + " (p_id)");
-                        //Intent intent = new Intent(InsertarVentas.this, PrincipalVentas.class);
-                        //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP); //clear previous activities
-                        //startActivity(intent);
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        barra_de_progreso.cancel();
-                        Toast.makeText(Carrito.this, getResources().getString(R.string.response) + " : " + getResources().getString(R.string.insert_error), Toast.LENGTH_SHORT).show();
-                    }
-                }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                map.clear();
-                map.put("p_id", Integer.toString(productID));
-                map.put("c_id", Integer.toString(customerID));
-                map.put("cantidad", Integer.toString(quantity));
-                return map;
-            }
-            @Override
-            public Map < String, String > getHeaders() throws AuthFailureError {
-                HashMap < String, String > headers = new HashMap <> ();
-                String encodedCredentials = Base64.encodeToString("admin@tiendita.com:root".getBytes(), Base64.NO_WRAP);
-                headers.put("Authorization", "Basic " + encodedCredentials);
-                return headers;
-            }
-        };
-
-        Controlador.getInstance().agregaAlRequestQueue(enviaDatos);
     }
 }

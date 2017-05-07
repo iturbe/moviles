@@ -57,12 +57,13 @@
         <activity
             android:name=".Grafica.ProductosMasVendidos"
             android:label="@string/top_selling" />
-        <activity android:name=".Vendedor.ElegirCliente"/>
+        <activity android:name=".Vendedor.ElegirCliente"
+            android:launchMode="singleTask"/>
         <activity
             android:name=".Vendedor.Carrito"
             android:label="@string/cart" />
-        <activity android:name=".Vendedor.InsertarProducto"
-            android:label="@string/cart" />
+        <activity android:name=".Vendedor.Checkout"
+            android:label="@string/checkout" />
     </application>
 
 </manifest>

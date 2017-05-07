@@ -1,10 +1,12 @@
 package mx.itesm.csf.crud.Modelos;
 
+import java.io.Serializable;
+
 /**
  * Created by Alonso on 5/2/17.
  */
 
-public class ProductoEnCarrito {
+public class ProductoEnCarrito implements Serializable{
 
     private String nombre;
     private int precio;
