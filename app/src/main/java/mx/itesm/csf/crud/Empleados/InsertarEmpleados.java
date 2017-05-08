@@ -38,6 +38,8 @@ public class InsertarEmpleados extends AppCompatActivity {
     Button boton_cancelar,boton_guardar;
     ProgressDialog barra_de_progreso;
     Map<String,String> map = new HashMap<>();
+    int intent_clave;
+    int update;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +48,9 @@ public class InsertarEmpleados extends AppCompatActivity {
 
         /* obtenemos los datos del intento*/
         Intent datos = getIntent();
-        final int update = datos.getIntExtra("update",0);
-        String intent_clave = datos.getStringExtra("clave");
+        update = datos.getIntExtra("update",0);
+        Log.d("update recibido", update+"");
+        intent_clave = datos.getIntExtra("clave", -1);
         String intent_nombre = datos.getStringExtra("nombre");
         String intent_apellido = datos.getStringExtra("apellido");
         String intent_admin = datos.getStringExtra("admin");
@@ -71,7 +74,7 @@ public class InsertarEmpleados extends AppCompatActivity {
         if(update == 1)
         {
             boton_guardar.setText(getResources().getString(R.string.update_data));
-            clave.setText(intent_clave);
+            clave.setText(Integer.toString(intent_clave));
             clave.setVisibility(View.GONE);
             nombre.setText(intent_nombre);
             apellido.setText(intent_apellido);
@@ -86,8 +89,10 @@ public class InsertarEmpleados extends AppCompatActivity {
             public void onClick(View view) {
                 if(update == 1)
                 {
+                    Log.d("estamos en", "actualizar datos");
                     actualizarDatos();
                 }else {
+                    Log.d("estamos en", "GUARDAR datos");
                     guardarDatos();
                 }
             }
@@ -110,7 +115,7 @@ public class InsertarEmpleados extends AppCompatActivity {
         barra_de_progreso.setCancelable(false);
         barra_de_progreso.show();
 
-        StringRequest updateReq = new StringRequest(Request.Method.POST, EMPLEADOS_CREATE,
+        StringRequest updateReq = new StringRequest(Request.Method.POST, EMPLEADOS_UPDATE,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -139,6 +144,7 @@ public class InsertarEmpleados extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 map.clear();
+                //map.put("e_id", Integer.toString(intent_clave));
                 map.put("e_id",clave.getText().toString());
                 map.put("nombre",nombre.getText().toString());
                 map.put("apellido",apellido.getText().toString());

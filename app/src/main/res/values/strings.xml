@@ -84,5 +84,6 @@
     <string name="view_graphs">Ver gráfica</string>
     <string name="confirmation">Confirmación de pedido</string>
     <string name="confirm_order">Confirmar pedido</string>
+    <string name="select_product_to_delete">Selecciona el producto que deseas eliminar del carrito</string>
 
 </resources>

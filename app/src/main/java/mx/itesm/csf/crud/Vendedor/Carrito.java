@@ -103,6 +103,38 @@ public class Carrito extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onNewIntent(Intent intent){
+        super.onNewIntent(intent);
+        int toDelete = intent.getIntExtra("elemento", -1);
+        carrito.remove(toDelete);
+        miAdaptador.notifyDataSetChanged();
+        setIntent(intent);
+    }
+
+    public void deleteFromCart(View view){
+        if (carrito.isEmpty()){
+            Toast.makeText(Carrito.this, getResources().getString(R.string.empty_cart), Toast.LENGTH_SHORT).show();
+        } else {
+
+            ArrayList <String> simpleCart = new ArrayList<>();
+
+            //hacemos un carrito más simple con únicamente los nombres
+            for (int a = 0; a < carrito.size(); a++){
+                simpleCart.add(carrito.get(a).getNombre());
+            }
+
+            // hay mínimo un objeto en el carrito, nos movemos a la pantalla de checkout/confirmación de órden
+            Intent intent = new Intent(Carrito.this, BorrarElementoEnCarrito.class);
+
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("carrito", simpleCart);
+            intent.putExtras(bundle);
+
+            startActivity(intent);
+        }
+    }
+
     // función que efectúa el proceso de checkout del carrito
     public void checkout(View view){
         if (carrito.isEmpty()){

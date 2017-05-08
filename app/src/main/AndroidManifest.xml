@@ -12,30 +12,42 @@
         android:roundIcon="@mipmap/round_shop_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Ropa.Principal"
-            android:label="@string/clothes_main"/>
-        <activity android:name=".Ropa.InsertarDatos"
-            android:label="@string/clothes_insert"/>
-        <activity android:name=".Ropa.BorrarDatos"
-            android:label="@string/clothes_delete"/>
-        <activity android:name=".Empleados.PrincipalEmpleados"
-            android:label="@string/employees_main"/>
-        <activity android:name=".Empleados.BorrarEmpleados"
-            android:label="@string/employees_delete"/>
-        <activity android:name=".Empleados.InsertarEmpleados"
-            android:label="@string/employees_insert"/>
-        <activity android:name=".Clientes.PrincipalClientes"
-            android:label="@string/clients_main"/>
-        <activity android:name=".Clientes.InsertarClientes"
-            android:label="@string/clients_insert"/>
-        <activity android:name=".Clientes.BorrarClientes"
-            android:label="@string/clients_delete"/>
-        <activity android:name=".Ventas.PrincipalVentas"
-            android:label="@string/sales_main"/>
-        <activity android:name=".Ventas.BorrarVentas"
-            android:label="@string/sales_delete"/>
-        <activity android:name=".Ventas.InsertarVentas"
-            android:label="@string/sales_insert"/>
+        <activity
+            android:name=".Ropa.Principal"
+            android:label="@string/clothes_main" />
+        <activity
+            android:name=".Ropa.InsertarDatos"
+            android:label="@string/clothes_insert" />
+        <activity
+            android:name=".Ropa.BorrarDatos"
+            android:label="@string/clothes_delete" />
+        <activity
+            android:name=".Empleados.PrincipalEmpleados"
+            android:label="@string/employees_main" />
+        <activity
+            android:name=".Empleados.BorrarEmpleados"
+            android:label="@string/employees_delete" />
+        <activity
+            android:name=".Empleados.InsertarEmpleados"
+            android:label="@string/employees_insert" />
+        <activity
+            android:name=".Clientes.PrincipalClientes"
+            android:label="@string/clients_main" />
+        <activity
+            android:name=".Clientes.InsertarClientes"
+            android:label="@string/clients_insert" />
+        <activity
+            android:name=".Clientes.BorrarClientes"
+            android:label="@string/clients_delete" />
+        <activity
+            android:name=".Ventas.PrincipalVentas"
+            android:label="@string/sales_main" />
+        <activity
+            android:name=".Ventas.BorrarVentas"
+            android:label="@string/sales_delete" />
+        <activity
+            android:name=".Ventas.InsertarVentas"
+            android:label="@string/sales_insert" />
         <activity android:name=".CRUDmenu" />
         <activity
             android:name=".Login.RegisterActivity"
@@ -48,6 +60,7 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -57,13 +70,16 @@
         <activity
             android:name=".Grafica.ProductosMasVendidos"
             android:label="@string/top_selling" />
-        <activity android:name=".Vendedor.ElegirCliente"
-            android:launchMode="singleTask"/>
+        <activity
+            android:name=".Vendedor.ElegirCliente"
+            android:launchMode="singleTask" />
         <activity
             android:name=".Vendedor.Carrito"
             android:label="@string/cart" />
-        <activity android:name=".Vendedor.Checkout"
+        <activity
+            android:name=".Vendedor.Checkout"
             android:label="@string/checkout" />
+        <activity android:name=".Vendedor.BorrarElementoEnCarrito"></activity>
     </application>
 
 </manifest>

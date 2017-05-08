@@ -3,6 +3,7 @@ package mx.itesm.csf.crud.Adaptadores;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,6 +85,7 @@ public class AdaptadorEmpleados extends RecyclerView.Adapter<AdaptadorEmpleados.
                     Intent update = new Intent(context, InsertarEmpleados.class);
                     update.putExtra("update",1);
                     update.putExtra("clave",datamodel.getE_id());
+                    Log.d("clave", datamodel.getE_id()+"");
                     update.putExtra("nombre",datamodel.getNombre());
                     update.putExtra("apellido",datamodel.getApellido());
                     update.putExtra("admin",datamodel.getAdmin());

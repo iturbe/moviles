@@ -38,6 +38,7 @@ public class InsertarVentas extends AppCompatActivity {
     Button boton_cancelar,boton_guardar;
     ProgressDialog barra_de_progreso;
     Map<String, String> map = new HashMap<>();
+    int update;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,12 +47,11 @@ public class InsertarVentas extends AppCompatActivity {
 
         /* obtenemos los datos del intento*/
         Intent datos = getIntent();
-        final int update = datos.getIntExtra("update",0);
-        String intent_clave_venta = datos.getStringExtra("clave_venta");
-        String intent_clave_producto = datos.getStringExtra("clave_producto");
-        String intent_clave_cliente = datos.getStringExtra("clave_cliente");
-        String intent_cantidad = datos.getStringExtra("cantidad");
-
+        update = datos.getIntExtra("update",0);
+        int intent_clave_venta = datos.getIntExtra("clave_venta", -1);
+        int intent_clave_producto = datos.getIntExtra("clave_producto", -1);
+        int intent_clave_cliente = datos.getIntExtra("clave_cliente", -1);
+        int intent_cantidad = datos.getIntExtra("cantidad", -1);
 
         // hacemos referencia a nuestra interfaz gráfica XML
         clave_venta = (EditText) findViewById(R.id.clave_venta);
@@ -68,11 +68,11 @@ public class InsertarVentas extends AppCompatActivity {
         if(update == 1)
         {
             boton_guardar.setText(getResources().getString(R.string.update_data));
-            clave_venta.setText(intent_clave_venta);
-            clave_producto.setText(intent_clave_producto);
-            clave_cliente.setText(intent_clave_cliente);
+            clave_venta.setText(Integer.toString(intent_clave_venta));
+            clave_producto.setText(Integer.toString(intent_clave_producto));
+            clave_cliente.setText(Integer.toString(intent_clave_cliente));
             clave_venta.setVisibility(View.GONE);
-            cantidad.setText(intent_cantidad);
+            cantidad.setText(Integer.toString(intent_cantidad));
         }
 
         boton_guardar.setOnClickListener(new View.OnClickListener() {
