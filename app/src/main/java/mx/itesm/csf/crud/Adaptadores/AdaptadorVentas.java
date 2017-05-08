@@ -3,6 +3,7 @@ package mx.itesm.csf.crud.Adaptadores;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -87,6 +88,12 @@ public class AdaptadorVentas extends RecyclerView.Adapter<AdaptadorVentas.Conten
                     update.putExtra("cantidad",datamodel.getCantidad());
                     update.putExtra("clave_cliente",datamodel.getC_id());
                     update.putExtra("clave_producto",datamodel.getP_id());
+
+                    Log.d("clave venta enviada", datamodel.getV_id()+"");
+                    Log.d("clave cliente enviada", datamodel.getC_id()+"");
+                    Log.d("cantidad enviada", datamodel.getCantidad()+"");
+                    Log.d("clave producto enviada", datamodel.getP_id()+"");
+
                     context.startActivity(update);
                 }
             });

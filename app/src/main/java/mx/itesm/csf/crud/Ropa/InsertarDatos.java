@@ -39,6 +39,7 @@ public class InsertarDatos extends AppCompatActivity {
     Button boton_cancelar,boton_guardar;
     ProgressDialog barra_de_progreso;
     Map<String,String> map = new HashMap<>();
+    int update = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +49,8 @@ public class InsertarDatos extends AppCompatActivity {
 
         /* obtenemos los datos del intento*/
         Intent datos = getIntent();
-        final int update = datos.getIntExtra("update",0);
-        String intent_clave = datos.getStringExtra("clave");
+        update = datos.getIntExtra("update",0);
+        int intent_clave = datos.getIntExtra("clave", -1);
         String intent_nombre = datos.getStringExtra("nombre");
         String intent_precio = datos.getStringExtra("precio");
         String intent_imagen = datos.getStringExtra("imagen");
@@ -73,7 +74,7 @@ public class InsertarDatos extends AppCompatActivity {
         if(update == 1)
         {
             boton_guardar.setText(getResources().getString(R.string.update_data));
-            clave.setText(intent_clave);
+            clave.setText(Integer.toString(intent_clave));
             clave.setVisibility(View.GONE);
             nombre.setText(intent_nombre);
             precio.setText(intent_precio);
