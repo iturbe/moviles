@@ -286,7 +286,7 @@ public class Carrito extends AppCompatActivity {
 
         new AlertDialog.Builder(thisContext)
                 .setView(layout)
-                .setTitle("Elige la cantidad del producto que se desea comprar")
+                .setTitle(R.string.choose_product_quantity)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
