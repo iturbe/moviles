@@ -4,16 +4,19 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.InputType;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -112,6 +115,29 @@ public class Carrito extends AppCompatActivity {
         setIntent(intent);
     }
 
+    //función que permite la selección manual del código del producto
+    public void manualItemPicker(View view){
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle(R.string.enter_product_code);
+        final EditText input = new EditText(this);
+        input.setInputType(InputType.TYPE_CLASS_NUMBER);
+        input.setRawInputType(Configuration.KEYBOARD_12KEY);
+        alert.setView(input);
+        alert.setPositiveButton(R.string.addToCart, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                productID = Integer.parseInt(input.getText().toString());
+                callNumberPicker();
+            }
+        });
+        alert.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                // NO HACER NADA
+            }
+        });
+        alert.show();
+    }
+
+    //función que borra cosas del carrito
     public void deleteFromCart(View view){
         if (carrito.isEmpty()){
             Toast.makeText(Carrito.this, getResources().getString(R.string.empty_cart), Toast.LENGTH_SHORT).show();
@@ -260,6 +286,7 @@ public class Carrito extends AppCompatActivity {
 
         new AlertDialog.Builder(thisContext)
                 .setView(layout)
+                .setTitle("Elige la cantidad del producto que se desea comprar")
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
