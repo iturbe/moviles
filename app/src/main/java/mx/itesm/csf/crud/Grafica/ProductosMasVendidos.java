@@ -91,15 +91,11 @@ public class ProductosMasVendidos extends AppCompatActivity {
                         chart.getDescription().setText(""); // redundante ya que la descripción está en el top bar
                         chart.getLegend().setEnabled(false);
 
-                        String[] values = new String[] {"Product1", "Product2", "Product3", "Product4", "Product5"};
-
                         XAxis xAxis = chart.getXAxis();
-                        xAxis.setValueFormatter(new MyAxisValueFormatter(values));
                         xAxis.setDrawAxisLine(false);
                         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
                         xAxis.setDrawLabels(false);
                         xAxis.setDrawGridLines(false);
-                        //chart.setVisibleXRangeMaximum(5);
 
                         dataset.notifyDataSetChanged();
 
