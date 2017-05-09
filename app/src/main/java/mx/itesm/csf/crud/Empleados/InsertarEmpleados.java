@@ -103,6 +103,7 @@ public class InsertarEmpleados extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent principal = new Intent(InsertarEmpleados.this,PrincipalEmpleados.class);
+                principal.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP); //clear previous activities
                 startActivity(principal);
             }
         });
