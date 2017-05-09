@@ -89,6 +89,7 @@ public class InsertarClientes extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent principal = new Intent(InsertarClientes.this,PrincipalClientes.class);
+                principal.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP); //clear previous activities
                 startActivity(principal);
             }
         });
