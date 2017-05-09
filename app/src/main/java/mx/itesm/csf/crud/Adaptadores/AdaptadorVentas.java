@@ -47,7 +47,7 @@ public class AdaptadorVentas extends RecyclerView.Adapter<AdaptadorVentas.Conten
     @Override
     public void onBindViewHolder(AdaptadorVentas.ContenedorDeDatos titulo, int position) {
         ModeloVentas datamodel  = misElementos.get(position);
-        titulo.Cantidad.setText("Cliente # " + datamodel.getC_id() + " | Producto # " + datamodel.getP_id() + " | Cantidad: " + datamodel.getCantidad());
+        titulo.Cantidad.setText(context.getResources().getString(R.string.client) + " # " + datamodel.getC_id() + " | " + context.getResources().getString(R.string.product) + " # " + datamodel.getP_id() + " | " + context.getResources().getString(R.string.quantity) + ": " + datamodel.getCantidad());
         titulo.clave_venta.setText("# " + datamodel.getV_id() + ": ");
 
         titulo.datamodel = datamodel;
